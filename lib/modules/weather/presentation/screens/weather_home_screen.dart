@@ -45,6 +45,7 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
   Widget build(BuildContext context) {
     return RxBuilder(builder: (context) {
       final currentWeatherState = _currentWeatherController.currentWeather;
+      final weatherForecastState = _currentWeatherController.forecasts;
       final currentConcert = _currentWeatherController.currentConcert;
 
       return Scaffold(
@@ -60,30 +61,39 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
             return const SizedBox.shrink();
           }),
         ),
-        body: Builder(builder: (context) {
-          if (currentConcert == null) {
-            return EmptyConcertWeatherView(
-              onTapChooseConcert: handleSwitchConcert,
-            );
-          }
+        body: SafeArea(
+          child: Builder(builder: (context) {
+            if (currentConcert == null) {
+              return EmptyConcertWeatherView(
+                onTapChooseConcert: handleSwitchConcert,
+              );
+            }
 
-          if (currentWeatherState is Error) {
-            final failure = currentWeatherState.failure;
-            return FailureCurrentWeatherView(
-              failure: failure,
-              onTapTryAgain: handleTryAgain,
-            );
-          }
+            if (currentWeatherState is Error || weatherForecastState is Error) {
+              final failure = currentWeatherState is Error
+                  ? currentWeatherState.failure
+                  : weatherForecastState.failure;
 
-          if (currentWeatherState is Loaded) {
-            final currentWeater = currentWeatherState.data;
-            return LoadedCurrentWeatherView(
-              currentWeather: currentWeater,
-            );
-          }
+              return FailureCurrentWeatherView(
+                failure: failure,
+                onTapTryAgain: handleTryAgain,
+              );
+            }
 
-          return const LoadingCurrentWeatherView();
-        }),
+            if (currentWeatherState is Loaded &&
+                weatherForecastState is Loaded) {
+              final currentWeater = currentWeatherState.data;
+              final forescast = weatherForecastState.data;
+
+              return LoadedCurrentWeatherView(
+                currentWeather: currentWeater,
+                forecasts: forescast,
+              );
+            }
+
+            return const LoadingCurrentWeatherView();
+          }),
+        ),
       );
     });
   }
