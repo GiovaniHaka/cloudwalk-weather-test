@@ -27,4 +27,14 @@ class BrazilianPortugueseDictionary implements Dictionary {
 
   @override
   String get hintSearchCity => 'Busque por cidade';
+
+  @override
+  String get toGetStartedChooseConcert =>
+      'Para começar a experiência, escolha um concerto.';
+
+  @override
+  String get welcomeToCloudwalkWeather => 'Vamos de Cloudwalk';
+
+  @override
+  String get buttonChoose => 'Escolher';
 }

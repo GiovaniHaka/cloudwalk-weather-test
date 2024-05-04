@@ -1,4 +1,5 @@
 import 'package:cloudwalk/modules/concerts/concert_router.dart';
+import 'package:cloudwalk/modules/weather/presentation/views/empty_concert_weather_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/views/failure_current_weather_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/views/loading_current_weather_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/widgets/switch_concert_title.dart';
@@ -42,32 +43,48 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: SwitchConcertTitle(
-          onTap: handleSwitchConcert,
+    return RxBuilder(builder: (context) {
+      final currentWeatherState = _currentWeatherController.currentWeather;
+      final currentConcert = _currentWeatherController.currentConcert;
+
+      return Scaffold(
+        appBar: AppBar(
+          title: Builder(builder: (context) {
+            if (currentConcert != null) {
+              return SwitchConcertTitle(
+                concert: currentConcert,
+                onTap: handleSwitchConcert,
+              );
+            }
+
+            return const SizedBox.shrink();
+          }),
         ),
-      ),
-      body: RxBuilder(builder: (context) {
-        final currentWeatherState = _currentWeatherController.currentWeather;
+        body: Builder(builder: (context) {
+          if (currentConcert == null) {
+            return EmptyConcertWeatherView(
+              onTapChooseConcert: handleSwitchConcert,
+            );
+          }
 
-        if (currentWeatherState is Error) {
-          final failure = currentWeatherState.failure;
-          return FailureCurrentWeatherView(
-            failure: failure,
-            onTapTryAgain: handleTryAgain,
-          );
-        }
+          if (currentWeatherState is Error) {
+            final failure = currentWeatherState.failure;
+            return FailureCurrentWeatherView(
+              failure: failure,
+              onTapTryAgain: handleTryAgain,
+            );
+          }
 
-        if (currentWeatherState is Loaded) {
-          final currentWeater = currentWeatherState.data;
-          return LoadedCurrentWeatherView(
-            currentWeather: currentWeater,
-          );
-        }
+          if (currentWeatherState is Loaded) {
+            final currentWeater = currentWeatherState.data;
+            return LoadedCurrentWeatherView(
+              currentWeather: currentWeater,
+            );
+          }
 
-        return const LoadingCurrentWeatherView();
-      }),
-    );
+          return const LoadingCurrentWeatherView();
+        }),
+      );
+    });
   }
 }

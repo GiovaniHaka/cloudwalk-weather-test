@@ -1,7 +1,9 @@
+import 'package:cloudwalk/modules/concerts/domain/entities/concert_entity.dart';
 import 'package:cloudwalk/modules/concerts/presentation/views/empty_concerts_view.dart';
 import 'package:cloudwalk/modules/concerts/presentation/views/failure_concerts_view.dart';
 import 'package:cloudwalk/modules/concerts/presentation/views/loaded_concerts_view.dart';
 import 'package:cloudwalk/modules/concerts/presentation/views/loading_concerts_view.dart';
+import 'package:cloudwalk/modules/weather/presentation/controllers/current_weather_controller.dart';
 import 'package:cloudwalk/shared/commons/constants/padding_constants.dart';
 import 'package:cloudwalk/shared/commons/states/app_state.dart';
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
@@ -16,10 +18,12 @@ import 'package:rx_notifier/rx_notifier.dart';
 
 class ConcertsScreen extends StatefulWidget {
   final ConcertsController concertsController;
+  final CurrentWeatherController currentWeatherController;
 
   const ConcertsScreen({
     Key? key,
     required this.concertsController,
+    required this.currentWeatherController,
   }) : super(key: key);
 
   @override
@@ -28,21 +32,28 @@ class ConcertsScreen extends StatefulWidget {
 
 class _ConcertsScreenState extends State<ConcertsScreen> {
   late ConcertsController _concertsController;
+  late CurrentWeatherController _currentWeatherController;
 
   @override
   void initState() {
     super.initState();
     _concertsController = widget.concertsController;
+    _currentWeatherController = widget.currentWeatherController;
 
-    _concertsController.initialize();
-  }
-
-  handleTryAgain() {
     _concertsController.initialize();
   }
 
   onChangeSearchCityName(String? name) {
     _concertsController.onChangeSearchCityName(name);
+  }
+
+  handleConcert(ConcertEntity value) {
+    _currentWeatherController.onChangeConcert(value);
+    Navigator.pop(context);
+  }
+
+  handleTryAgain() {
+    _concertsController.initialize();
   }
 
   @override
@@ -91,7 +102,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
                     final concerts = concertsState.data;
                     return LoadedConcertsView(
                       concerts: concerts,
-                      onTapConcert: (val) {},
+                      onTapConcert: handleConcert,
                       onChangeSearchCityName: onChangeSearchCityName,
                     );
                   }

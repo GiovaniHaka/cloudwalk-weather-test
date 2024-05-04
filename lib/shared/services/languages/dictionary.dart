@@ -3,6 +3,10 @@
 abstract class Dictionary {
   String get helloWorld;
 
+  /// [Welcome]
+  String get welcomeToCloudwalkWeather;
+  String get toGetStartedChooseConcert;
+
   /// [Failures]
   String get failureMessage;
 
@@ -15,6 +19,7 @@ abstract class Dictionary {
 
   /// [Buttons]
   String get buttonTryAgain;
+  String get buttonChoose;
 
   /// [Empty]
   String get emptyConcerts;

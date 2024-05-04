@@ -1,3 +1,4 @@
+import 'package:cloudwalk/modules/concerts/domain/entities/concert_entity.dart';
 import 'package:cloudwalk/modules/weather/domain/entities/current_weather_entity.dart';
 import 'package:cloudwalk/modules/weather/domain/usecases/get_current_weather_usecase.dart';
 import 'package:cloudwalk/shared/commons/failures/presentation_failures/controller_failure.dart';
@@ -14,17 +15,43 @@ class CurrentWeatherController {
   final _currentWeather = RxNotifier<AppState<CurrentWeatherEntity>>(Initial());
   AppState<CurrentWeatherEntity> get currentWeather => _currentWeather.value;
 
+  final _currentConcert = RxNotifier<ConcertEntity?>(null);
+  ConcertEntity? get currentConcert => _currentConcert.value;
+
   initialize() {
-    _getCurrentWeather();
+    final concert = currentConcert;
+
+    if (concert == null) {
+      _currentWeather.value = Empty();
+      return;
+    }
+
+    _getCurrentWeather(
+      lat: concert.lat,
+      lon: concert.lon,
+    );
   }
 
-  Future<void> _getCurrentWeather() async {
+  onChangeConcert(ConcertEntity? concert) {
+    if (concert != null) {
+      _currentConcert.value = concert;
+      _getCurrentWeather(
+        lat: concert.lat,
+        lon: concert.lon,
+      );
+    }
+  }
+
+  Future<void> _getCurrentWeather({
+    required double lat,
+    required double lon,
+  }) async {
     try {
       _currentWeather.value = Loading();
 
       final result = await _getCurrentWeatherUsecase(
-        lat: 0.0,
-        lon: 0.0,
+        lat: lat,
+        lon: lon,
       );
 
       result.fold(

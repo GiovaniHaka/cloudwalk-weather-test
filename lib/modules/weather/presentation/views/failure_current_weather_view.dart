@@ -1,5 +1,5 @@
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
-import 'package:cloudwalk/shared/components/buttons/onze_text_button.dart';
+import 'package:cloudwalk/shared/components/buttons/app_text_button.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
 import 'package:flutter/material.dart';
 

@@ -16,6 +16,7 @@ class ConcertRouter implements ModuleRouter {
         builder: (context, state) {
           return ConcertsScreen(
             concertsController: getIt.get(),
+            currentWeatherController: getIt.get(),
           );
         },
       ),
