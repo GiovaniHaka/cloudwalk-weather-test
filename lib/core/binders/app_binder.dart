@@ -1,4 +1,5 @@
 import 'package:cloudwalk/core/endpoints/app_endpoints.dart';
+import 'package:cloudwalk/modules/concerts/concert_binder.dart';
 import 'package:cloudwalk/modules/weather/weather_binder.dart';
 import 'package:cloudwalk/shared/services/api_client/api_client_binder.dart';
 import 'package:cloudwalk/shared/services/env/env_binder.dart';
@@ -26,6 +27,7 @@ class AppBinder {
     LocalDatabaseBinder(),
     
     /// Modules
+    ConcertBinder(getIt: getIt),
     WeatherBinder(getIt: getIt),
   ];
 
