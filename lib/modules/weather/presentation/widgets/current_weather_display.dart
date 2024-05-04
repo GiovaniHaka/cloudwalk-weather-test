@@ -1,6 +1,7 @@
 import 'package:cloudwalk/modules/weather/domain/entities/current_weather_entity.dart';
 import 'package:cloudwalk/shared/commons/extensions/string_extensions.dart';
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
+import 'package:cloudwalk/shared/components/images/app_network_image.dart';
 import 'package:cloudwalk/shared/components/separators/vertical_separator.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,9 @@ class CurrentTemperatureDisplay extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        AppNetworkImage(
+          imageUrl: weather.iconUrl,
+        ),
         Text(
           main.temperatureWithUnits,
           style: AppTextStyle.headlineMedium(),

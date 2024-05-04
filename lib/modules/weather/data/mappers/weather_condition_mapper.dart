@@ -12,6 +12,7 @@ class WeatherConditionMapper implements Mapper<WeatherConditionModel, WeatherCon
         description: model.description,
         icon: model.icon,
         main: model.main,
+        iconUrl: model.iconUrl,
       );
     } catch (e, s) {
       throw MapperFailure(error: e, stackTrace: s);
