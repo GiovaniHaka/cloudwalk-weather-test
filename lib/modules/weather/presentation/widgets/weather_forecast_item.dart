@@ -5,6 +5,7 @@ import 'package:cloudwalk/shared/commons/extensions/double_extension.dart';
 import 'package:cloudwalk/shared/commons/extensions/string_extensions.dart';
 import 'package:cloudwalk/shared/commons/styles/app_colors.dart';
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
+import 'package:cloudwalk/shared/components/images/app_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/modules/weather/domain/entities/weather_forecast_entity.dart';
@@ -28,6 +29,7 @@ class _WeatherForecastItemState extends State<WeatherForecastItem> {
   late double maxTemperature;
   late double minTemperature;
   late String description;
+  late String iconUrl;
 
   setup() {
     date = widget.date;
@@ -40,7 +42,13 @@ class _WeatherForecastItemState extends State<WeatherForecastItem> {
           (value, element) => value < element ? value : element,
         );
 
-    description = widget.forecasts.first.conditions.first.description;
+    final middleIndex = widget.forecasts.length ~/ 2;
+
+    final firstForecast = widget.forecasts[middleIndex];
+    final firstWeather = firstForecast.conditions.first;
+
+    description = firstWeather.description;
+    iconUrl = firstWeather.iconUrl;
   }
 
   @override
@@ -60,41 +68,52 @@ class _WeatherForecastItemState extends State<WeatherForecastItem> {
     return Container(
       width: 160,
       decoration: BoxDecoration(
-        color: AppColors.greyLightest,
+        color: AppColors.primaryRegular.withOpacity(0.1),
         borderRadius: BorderRadius.circular(
           regularRadius,
         ),
       ),
       padding: const EdgeInsets.all(regularPadding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Stack(
+        alignment: Alignment.topRight,
         children: [
-          Text(
-            date.formatWeekday().capitalize(),
-            style: AppTextStyle.titleMedium(),
-            overflow: TextOverflow.ellipsis,
+          AppNetworkImage(
+            imageUrl: iconUrl,
+            height: 40,
+            width: 40,
+            color: Colors.black,
           ),
-          RichText(
-            text: TextSpan(
-              style: AppTextStyle.titleSmall(),
-              children: [
-                TextSpan(
-                  text: maxTemperature.toTemperature(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                date.formatWeekday().capitalize(),
+                style: AppTextStyle.titleMedium(),
+                overflow: TextOverflow.ellipsis,
+              ),
+              RichText(
+                text: TextSpan(
+                  style: AppTextStyle.titleSmall(),
+                  children: [
+                    TextSpan(
+                      text: maxTemperature.toTemperature(),
+                    ),
+                    const TextSpan(text: ' / '),
+                    TextSpan(
+                      text: minTemperature.toTemperature(),
+                      style: AppTextStyle.bodyMedium(),
+                    ),
+                  ],
                 ),
-                const TextSpan(text: ' / '),
-                TextSpan(
-                  text: minTemperature.toTemperature(),
-                  style: AppTextStyle.bodyMedium(),
-                ),
-              ],
-            ),
-            overflow: TextOverflow.ellipsis,
-          ),
-          Text(
-            description.capitalize(),
-            style: AppTextStyle.bodyMedium(),
-            overflow: TextOverflow.ellipsis,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                description.capitalize(),
+                style: AppTextStyle.bodyMedium(),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ),
         ],
       ),

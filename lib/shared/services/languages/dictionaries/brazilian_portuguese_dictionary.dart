@@ -37,4 +37,7 @@ class BrazilianPortugueseDictionary implements Dictionary {
 
   @override
   String get buttonChoose => 'Escolher';
+  
+  @override
+  String get now => 'Agora';
 }

@@ -1,3 +1,5 @@
+import 'package:cloudwalk/shared/commons/extensions/double_extension.dart';
+
 class WeatherMainEntity {
   final double temperature;
   final double maxTemperature;
@@ -12,14 +14,14 @@ class WeatherMainEntity {
   });
 
   String get temperatureWithUnits {
-    return '${temperature.toStringAsFixed(0)} °C';
+    return temperature.toTemperature();
   }
 
   String get maxTemperatureWithUnits {
-    return '${maxTemperature.toStringAsFixed(0)} °C';
+    return maxTemperature.toTemperature();
   }
 
   String get minTemperatureWithUnits {
-    return '${minTemperature.toStringAsFixed(0)} °C';
+    return minTemperature.toTemperature();
   }
 }

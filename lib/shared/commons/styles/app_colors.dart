@@ -17,7 +17,7 @@ class AppColors {
 
   /// [Grey]
   /// [Grey]
-  static const Color greyLightest = Color(0XffF5F5F5);
+  static const Color greyLightest = Color(0XffF8F8F8);
   static const Color greyLight = Color(0xffE8E8E8);
   static const Color greyRegular = Color(0xffD9D9D9);
   static const Color greyMedium = Color(0xff999999);

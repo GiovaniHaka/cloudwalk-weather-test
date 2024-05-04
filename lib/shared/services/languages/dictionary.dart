@@ -1,4 +1,4 @@
-/// [Dictionary] is an abstract class that contains all the strings used in the application. 
+/// [Dictionary] is an abstract class that contains all the strings used in the application.
 /// This methodology is used to separate the strings from the code, making it easier to maintain and change them.
 abstract class Dictionary {
   String get helloWorld;
@@ -26,4 +26,7 @@ abstract class Dictionary {
 
   /// [Hint]
   String get hintSearchCity;
+
+  /// [DateTimeRelated]
+  String get now;
 }
