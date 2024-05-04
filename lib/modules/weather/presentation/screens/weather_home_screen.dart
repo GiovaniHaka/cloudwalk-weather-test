@@ -1,7 +1,8 @@
+import 'package:cloudwalk/modules/concerts/concert_router.dart';
 import 'package:cloudwalk/modules/weather/presentation/views/failure_current_weather_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/views/loading_current_weather_view.dart';
+import 'package:cloudwalk/modules/weather/presentation/widgets/switch_concert_title.dart';
 import 'package:cloudwalk/shared/commons/states/app_state.dart';
-import 'package:cloudwalk/shared/services/languages/language.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/modules/weather/presentation/controllers/current_weather_controller.dart';
@@ -35,12 +36,16 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
     _currentWeatherController.initialize();
   }
 
+  handleSwitchConcert() {
+    ConcertRouter.goToConcerts(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          Language.instance.lang.currentWeather,
+        title: SwitchConcertTitle(
+          onTap: handleSwitchConcert,
         ),
       ),
       body: RxBuilder(builder: (context) {

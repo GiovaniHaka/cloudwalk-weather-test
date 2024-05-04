@@ -9,6 +9,13 @@ abstract class Dictionary {
   /// [WeatherRelated]
   String get currentWeather;
 
+  /// [ConcertsRelated]
+  String get concert;
+  String get concerts;
+
   /// [Buttons]
   String get buttonTryAgain;
+
+  /// [Empty]
+  String get emptyConcerts;
 }

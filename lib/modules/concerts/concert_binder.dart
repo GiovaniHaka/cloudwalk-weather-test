@@ -4,6 +4,7 @@ import 'package:cloudwalk/modules/concerts/data/sources/concert_source.dart';
 import 'package:cloudwalk/modules/concerts/data/sources/mock/mock_concert_source_impl.dart';
 import 'package:cloudwalk/modules/concerts/domain/repositories/concert_repository.dart';
 import 'package:cloudwalk/modules/concerts/domain/usecases/get_concert_usecase.dart';
+import 'package:cloudwalk/modules/concerts/presentation/controllers/concerts_controller.dart';
 import 'package:get_it/get_it.dart';
 
 /// [ConcertBinder] is a class that binds all dependencies related to the weather module
@@ -32,6 +33,13 @@ class ConcertBinder implements Binder {
     _getIt.registerFactory<GetConcertUsecase>(
       () => GetConcertUsecaseImpl(
         repository: _getIt.get(),
+      ),
+    );
+
+    /// [Controllers]
+    _getIt.registerFactory<ConcertsController>(
+      () => ConcertsController(
+        getConcertUsecase: _getIt.get(),
       ),
     );
   }

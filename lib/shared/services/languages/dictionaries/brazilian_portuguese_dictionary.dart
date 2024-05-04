@@ -6,13 +6,22 @@ class BrazilianPortugueseDictionary implements Dictionary {
 
   @override
   String get helloWorld => 'Olá, Mundo!';
-  
+
   @override
   String get failureMessage => 'Algo deu errado.';
-  
+
   @override
   String get currentWeather => 'Clima Atual';
-  
+
   @override
   String get buttonTryAgain => 'Tentar Novamente';
+
+  @override
+  String get concerts => 'Concertos';
+
+  @override
+  String get concert => 'Concerto';
+
+  @override
+  String get emptyConcerts => 'Por enquanto, não há concertos disponíveis.';
 }
