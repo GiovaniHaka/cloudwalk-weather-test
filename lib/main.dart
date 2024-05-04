@@ -6,7 +6,10 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import 'apps/weather_app.dart';
 
-void main() {
+void main() async {
+  /// Initialize the binding
+  WidgetsFlutterBinding.ensureInitialized();
+
   /// Set the language, and could be changed to any language
   Language.instance.setLanguage('pt_BR');
 

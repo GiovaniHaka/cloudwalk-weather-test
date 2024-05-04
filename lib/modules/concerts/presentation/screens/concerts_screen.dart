@@ -4,12 +4,14 @@ import 'package:cloudwalk/modules/concerts/presentation/views/failure_concerts_v
 import 'package:cloudwalk/modules/concerts/presentation/views/loaded_concerts_view.dart';
 import 'package:cloudwalk/modules/concerts/presentation/views/loading_concerts_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/controllers/current_weather_controller.dart';
+import 'package:cloudwalk/shared/commons/app_bar/app_top_bar.dart';
 import 'package:cloudwalk/shared/commons/constants/padding_constants.dart';
 import 'package:cloudwalk/shared/commons/states/app_state.dart';
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
 import 'package:cloudwalk/shared/components/forms/app_text_form_field.dart';
 import 'package:cloudwalk/shared/components/forms/app_unfocuser.dart';
 import 'package:cloudwalk/shared/components/separators/vertical_separator.dart';
+import 'package:cloudwalk/shared/services/connectivity/widgets/connectivity_builder.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
 import 'package:flutter/material.dart';
 
@@ -60,58 +62,60 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
   Widget build(BuildContext context) {
     return AppUnfocuser(
       child: Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(viewPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    Language.instance.lang.concerts,
-                    style: AppTextStyle.headlineMedium(),
-                  ),
-                  const VerticalSeparator.regular(),
-                  AppTextFormField(
-                    onChanged: onChangeSearchCityName,
-                    hintText: Language.instance.lang.hintSearchCity,
-                  ),
-                ],
+        appBar: AppTopBar(),
+        body: ConnectivityBuilder(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(viewPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      Language.instance.lang.concerts,
+                      style: AppTextStyle.headlineMedium(),
+                    ),
+                    const VerticalSeparator.regular(),
+                    AppTextFormField(
+                      onChanged: onChangeSearchCityName,
+                      hintText: Language.instance.lang.hintSearchCity,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: RxBuilder(
-                builder: (_) {
-                  final concertsState = _concertsController.concerts;
+              Expanded(
+                child: RxBuilder(
+                  builder: (_) {
+                    final concertsState = _concertsController.concerts;
 
-                  if (concertsState is Error) {
-                    final failure = concertsState.failure;
-                    return FailureConcertsView(
-                      failure: failure,
-                      onTapTryAgain: handleTryAgain,
-                    );
-                  }
+                    if (concertsState is Error) {
+                      final failure = concertsState.failure;
+                      return FailureConcertsView(
+                        failure: failure,
+                        onTapTryAgain: handleTryAgain,
+                      );
+                    }
 
-                  if (concertsState is Empty) {
-                    return const EmptyConcertsView();
-                  }
+                    if (concertsState is Empty) {
+                      return const EmptyConcertsView();
+                    }
 
-                  if (concertsState is Loaded) {
-                    final concerts = concertsState.data;
-                    return LoadedConcertsView(
-                      concerts: concerts,
-                      onTapConcert: handleConcert,
-                      onChangeSearchCityName: onChangeSearchCityName,
-                    );
-                  }
+                    if (concertsState is Loaded) {
+                      final concerts = concertsState.data;
+                      return LoadedConcertsView(
+                        concerts: concerts,
+                        onTapConcert: handleConcert,
+                        onChangeSearchCityName: onChangeSearchCityName,
+                      );
+                    }
 
-                  return const LoadingConcertsView();
-                },
+                    return const LoadingConcertsView();
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

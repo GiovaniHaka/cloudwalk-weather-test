@@ -29,4 +29,8 @@ abstract class Dictionary {
 
   /// [DateTimeRelated]
   String get now;
+
+  /// [Connectivity]
+  String get noneConnection;
+  String get verifyYourConnection;
 }

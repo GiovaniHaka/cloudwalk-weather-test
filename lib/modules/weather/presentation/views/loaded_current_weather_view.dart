@@ -27,11 +27,9 @@ class LoadedCurrentWeatherView extends StatelessWidget {
               currentWeatherEntity: currentWeather,
             ),
           ),
-          Expanded(
-            child: Center(
-              child: WeatherForecastDisplay(
-                forecasts: forecasts,
-              ),
+          Center(
+            child: WeatherForecastDisplay(
+              forecasts: forecasts,
             ),
           ),
         ],
