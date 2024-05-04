@@ -1,3 +1,4 @@
+import 'package:cloudwalk/shared/commons/styles/app_theme_data.dart';
 import 'package:flutter/material.dart';
 
 import '../modules/home/home_screen.dart';
@@ -9,10 +10,7 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Weather App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: false,
-      ),
+      theme: AppThemeData(context).theme,
       home: const HomeScreen(
         title: 'Weather App',
       ),
