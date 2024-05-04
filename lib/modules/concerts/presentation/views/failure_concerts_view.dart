@@ -1,3 +1,4 @@
+import 'package:cloudwalk/shared/commons/constants/padding_constants.dart';
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
 import 'package:cloudwalk/shared/components/buttons/app_text_button.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
@@ -5,11 +6,11 @@ import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 
-class FailureCurrentWeatherView extends StatelessWidget {
+class FailureConcertsView extends StatelessWidget {
   final Failure failure;
   final VoidCallback onTapTryAgain;
 
-  const FailureCurrentWeatherView({
+  const FailureConcertsView({
     Key? key,
     required this.failure,
     required this.onTapTryAgain,
@@ -17,7 +18,8 @@ class FailureCurrentWeatherView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Padding(
+      padding: const EdgeInsets.all(viewPadding),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
