@@ -3,8 +3,8 @@ import 'package:cloudwalk/modules/weather/data/models/weather_main_model.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/model_failure.dart';
 
 class CurrentWeatherModel {
-  final String cityName;
-  final String countryCode;
+  final String? cityName;
+  final String? countryCode;
   final List<WeatherConditionModel> conditions;
   final WeatherMainModel main;
 

@@ -11,4 +11,16 @@ class AppColors {
 
   /// [Secondary]
   static const Color secondaryRegular = Color(0xffb35bd3);
+
+  /// [Red]
+  static const Color redRegular = Color(0xffFF6B62);
+
+  /// [Grey]
+  /// [Grey]
+  static const Color greyLightest = Color(0XffF5F5F5);
+  static const Color greyLight = Color(0xffE8E8E8);
+  static const Color greyRegular = Color(0xffD9D9D9);
+  static const Color greyMedium = Color(0xff999999);
+  static const Color greyDark = Color(0xff818181);
+  static const Color greyDarkest = Color(0xff595959);
 }

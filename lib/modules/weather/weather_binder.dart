@@ -4,6 +4,7 @@ import 'package:cloudwalk/modules/weather/data/sources/remote/remote_weather_sou
 import 'package:cloudwalk/modules/weather/data/sources/weather_source.dart';
 import 'package:cloudwalk/modules/weather/domain/repositories/weather_repository.dart';
 import 'package:cloudwalk/modules/weather/domain/usecases/get_current_weather_usecase.dart';
+import 'package:cloudwalk/modules/weather/presentation/controllers/current_weather_controller.dart';
 import 'package:cloudwalk/shared/services/env/env.dart';
 import 'package:get_it/get_it.dart';
 
@@ -37,6 +38,13 @@ class WeatherBinder implements Binder {
     _getIt.registerFactory<GetCurrentWeatherUsecase>(
       () => GetCurrentWeatherUsecaseImpl(
         repository: _getIt.get(),
+      ),
+    );
+
+    /// [Controllers]
+    _getIt.registerLazySingleton<CurrentWeatherController>(
+      () => CurrentWeatherController(
+        getCurrentWeatherUsecase: _getIt.get(),
       ),
     );
   }

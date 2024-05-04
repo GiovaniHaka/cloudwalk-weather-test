@@ -5,4 +5,10 @@ abstract class Dictionary {
 
   /// [Failures]
   String get failureMessage;
+
+  /// [WeatherRelated]
+  String get currentWeather;
+
+  /// [Buttons]
+  String get buttonTryAgain;
 }

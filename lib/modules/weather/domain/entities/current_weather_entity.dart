@@ -2,8 +2,8 @@ import 'package:cloudwalk/modules/weather/domain/entities/weather_condition_enti
 import 'package:cloudwalk/modules/weather/domain/entities/weather_main_entity.dart';
 
 class CurrentWeatherEntity {
-  final String cityName;
-  final String countryCode;
+  final String? cityName;
+  final String? countryCode;
   final List<WeatherConditionEntity> conditions;
   final WeatherMainEntity main;
 

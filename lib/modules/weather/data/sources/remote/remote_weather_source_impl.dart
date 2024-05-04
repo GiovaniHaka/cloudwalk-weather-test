@@ -32,6 +32,8 @@ class RemoteWeatherSourceImpl implements WeatherSource {
         'lat': lat,
         'lon': lon,
         'appid': _env.openWeatherApiKey,
+        'units': 'metric',
+        'lang': 'pt_br',
       };
 
       final response = await _apiClientService.get(

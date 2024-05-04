@@ -9,4 +9,10 @@ class BrazilianPortugueseDictionary implements Dictionary {
   
   @override
   String get failureMessage => 'Algo deu errado.';
+  
+  @override
+  String get currentWeather => 'Clima Atual';
+  
+  @override
+  String get buttonTryAgain => 'Tentar Novamente';
 }
