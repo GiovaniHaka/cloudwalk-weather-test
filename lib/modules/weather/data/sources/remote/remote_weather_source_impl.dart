@@ -1,5 +1,6 @@
 import 'package:cloudwalk/core/endpoints/app_endpoints.dart';
 import 'package:cloudwalk/modules/weather/data/models/current_weather_model.dart';
+import 'package:cloudwalk/modules/weather/data/models/weather_forecast_model.dart';
 import 'package:cloudwalk/modules/weather/data/sources/weather_source.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/source_failure.dart';
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
@@ -46,6 +47,42 @@ class RemoteWeatherSourceImpl implements WeatherSource {
       final model = CurrentWeatherModel.fromJson(data);
 
       return Right(model);
+    } on ApiException catch (e) {
+      final failure = ApiErrorHandler.mapErrorCode(e.errorCode);
+      return Left(failure);
+    } catch (e, s) {
+      return Left(SourceFailure(error: e, stackTrace: s));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<WeatherForecastModel>>> getWeatherForecast({
+    required double lat,
+    required double lon,
+  }) async {
+    try {
+      final query = {
+        'lat': lat,
+        'lon': lon,
+        'appid': _env.openWeatherApiKey,
+        'units': 'metric',
+        'lang': 'pt_br',
+      };
+
+      final response = await _apiClientService.get(
+        path: _endpoints.weatherForecast,
+        queryParameters: query,
+      );
+
+      final data = response.data as Map<String, dynamic>;
+
+      final list = data['list'] as List;
+
+      final models = list.map((e) {
+        return WeatherForecastModel.fromJson(e);
+      }).toList();
+
+      return Right(models);
     } on ApiException catch (e) {
       final failure = ApiErrorHandler.mapErrorCode(e.errorCode);
       return Left(failure);

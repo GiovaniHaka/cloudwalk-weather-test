@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 
 abstract class AppEndpoints {
   String get currentWeather;
+  String get weatherForecast;
 }
 
 class AppEndpointsImpl implements AppEndpoints {
@@ -12,6 +13,9 @@ class AppEndpointsImpl implements AppEndpoints {
 
   @override
   String get currentWeather => '$openWeatherUrl/weather';
+
+  @override
+  String get weatherForecast => '$openWeatherUrl/forecast';
 }
 
 class AppEndpointsBinder implements Binder {

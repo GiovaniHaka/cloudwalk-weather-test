@@ -18,6 +18,8 @@ class CurrentTemperatureDisplay extends StatelessWidget {
     final weather = currentWeatherEntity.conditions.first;
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           main.temperatureWithUnits,
