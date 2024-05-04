@@ -68,7 +68,7 @@ class _WeatherForecastItemState extends State<WeatherForecastItem> {
     return Container(
       width: 160,
       decoration: BoxDecoration(
-        color: AppColors.primaryRegular.withOpacity(0.13),
+        color: AppColors.primaryRegular.withOpacity(0.1),
         borderRadius: BorderRadius.circular(
           regularRadius,
         ),
@@ -81,6 +81,7 @@ class _WeatherForecastItemState extends State<WeatherForecastItem> {
             imageUrl: iconUrl,
             height: 40,
             width: 40,
+            color: Colors.black,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

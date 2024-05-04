@@ -1,8 +1,10 @@
 import 'package:cloudwalk/modules/weather/domain/entities/current_weather_entity.dart';
+import 'package:cloudwalk/shared/commons/extensions/double_extension.dart';
 import 'package:cloudwalk/shared/commons/extensions/string_extensions.dart';
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
 import 'package:cloudwalk/shared/components/images/app_network_image.dart';
 import 'package:cloudwalk/shared/components/separators/vertical_separator.dart';
+import 'package:cloudwalk/shared/services/languages/language.dart';
 import 'package:flutter/material.dart';
 
 class CurrentTemperatureDisplay extends StatelessWidget {
@@ -24,25 +26,31 @@ class CurrentTemperatureDisplay extends StatelessWidget {
       children: [
         AppNetworkImage(
           imageUrl: weather.iconUrl,
+          color: Colors.black,
         ),
         Text(
           main.temperatureWithUnits,
-          style: AppTextStyle.headlineMedium(),
+          style: AppTextStyle.headlineLarge(),
         ),
         const VerticalSeparator.small(),
         RichText(
           text: TextSpan(
             style: AppTextStyle.titleMedium(),
             children: [
-              TextSpan(text: main.minTemperatureWithUnits),
-              const TextSpan(text: ' - '),
-              TextSpan(text: main.maxTemperatureWithUnits),
+              TextSpan(
+                text: main.maxTemperature.toTemperature(),
+              ),
+              const TextSpan(text: ' / '),
+              TextSpan(
+                text: main.minTemperature.toTemperature(),
+                style: AppTextStyle.bodyLarge(),
+              ),
             ],
           ),
         ),
         const VerticalSeparator.small(),
         Text(
-          weather.description.capitalize(),
+          '${Language.instance.lang.now} - ${weather.description.capitalize()}',
           style: AppTextStyle.titleSmall(),
         ),
       ],

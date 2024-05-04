@@ -7,6 +7,7 @@ class AppNetworkImage extends StatelessWidget {
   final double height;
   final double width;
   final BoxFit? fit;
+  final Color? color;
 
   const AppNetworkImage({
     super.key,
@@ -14,6 +15,7 @@ class AppNetworkImage extends StatelessWidget {
     this.fit = BoxFit.contain,
     this.height = 100,
     this.width = 100,
+    this.color,
   });
 
   @override
@@ -23,12 +25,17 @@ class AppNetworkImage extends StatelessWidget {
       width: width,
       fit: fit,
       imageUrl: imageUrl,
+      color: color,
       placeholder: (context, url) {
         return Center(
           child: Container(
             padding: const EdgeInsets.all(10),
             height: height,
             width: width,
+            constraints: const BoxConstraints(
+              maxHeight: 60,
+              maxWidth: 60,
+            ),
             child: const CircularProgressIndicator(
               strokeWidth: 2,
             ),
