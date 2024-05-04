@@ -4,5 +4,7 @@ import 'package:dartz/dartz.dart';
 
 /// [ConcertSource] is a source that retrieves a list of [ConcertModel].
 abstract class ConcertSource {
-  Future<Either<Failure, List<ConcertModel>>> getConcerts();
+  Future<Either<Failure, List<ConcertModel>>> getConcerts({
+    String? searchCity,
+  });
 }

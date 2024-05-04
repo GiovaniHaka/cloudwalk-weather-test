@@ -4,5 +4,7 @@ import 'package:dartz/dartz.dart';
 
 /// [ConcertRepository] is a repository that retrieves a list of [ConcertEntity].
 abstract class ConcertRepository {
-  Future<Either<Failure, List<ConcertEntity>>> getConcerts();
+  Future<Either<Failure, List<ConcertEntity>>> getConcerts({
+    String? searchCity,
+  });
 }

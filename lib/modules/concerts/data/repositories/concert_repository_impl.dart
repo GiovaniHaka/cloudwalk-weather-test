@@ -15,9 +15,11 @@ class ConcertRepositoryImpl implements ConcertRepository {
   }) : _source = source;
 
   @override
-  Future<Either<Failure, List<ConcertEntity>>> getConcerts() async {
+  Future<Either<Failure, List<ConcertEntity>>> getConcerts({
+    String? searchCity,
+  }) async {
     try {
-      final result = await _source.getConcerts();
+      final result = await _source.getConcerts(searchCity: searchCity);
 
       return result.fold(
         (failure) {

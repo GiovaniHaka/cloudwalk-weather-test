@@ -18,4 +18,7 @@ abstract class Dictionary {
 
   /// [Empty]
   String get emptyConcerts;
+
+  /// [Hint]
+  String get hintSearchCity;
 }

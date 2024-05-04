@@ -24,4 +24,7 @@ class BrazilianPortugueseDictionary implements Dictionary {
 
   @override
   String get emptyConcerts => 'Por enquanto, não há concertos disponíveis.';
+
+  @override
+  String get hintSearchCity => 'Busque por cidade';
 }

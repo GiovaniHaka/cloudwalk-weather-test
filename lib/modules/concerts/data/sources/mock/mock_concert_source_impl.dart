@@ -8,13 +8,24 @@ import 'package:dartz/dartz.dart';
 /// [MockConcertSourceImpl] is a mock source that implements [ConcertSource]
 class MockConcertSourceImpl extends ConcertSource {
   @override
-  Future<Either<Failure, List<ConcertModel>>> getConcerts() async {
+  Future<Either<Failure, List<ConcertModel>>> getConcerts({
+    String? searchCity,
+  }) async {
     try {
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(milliseconds: 200));
 
       const data = mockConcertData;
 
-      final models = data.map((e) => ConcertModel.fromJson(e)).toList();
+      List<ConcertModel> models = data.map((e) {
+        return ConcertModel.fromJson(e);
+      }).toList();
+
+      if (searchCity != null) {
+        models = models.where((element) {
+          final city = element.city.toLowerCase();
+          return city.contains(searchCity.toLowerCase());
+        }).toList();
+      }
 
       return Right(models);
     } catch (e, s) {

@@ -6,7 +6,9 @@ import 'package:dartz/dartz.dart';
 
 /// [GetConcertUsecase] is a usecase that retrieves a list of [ConcertEntity].
 abstract class GetConcertUsecase {
-  Future<Either<Failure, List<ConcertEntity>>> call();
+  Future<Either<Failure, List<ConcertEntity>>> call({
+    String? searchCity,
+  });
 }
 
 /// [GetConcertUsecaseImpl] is a usecase that retrieves a list of [ConcertEntity].
@@ -18,9 +20,15 @@ class GetConcertUsecaseImpl implements GetConcertUsecase {
   }) : _repository = repository;
 
   @override
-  Future<Either<Failure, List<ConcertEntity>>> call() async {
+  Future<Either<Failure, List<ConcertEntity>>> call({
+    String? searchCity,
+  }) async {
     try {
-      return _repository.getConcerts();
+      final search = searchCity?.trim();
+
+      return _repository.getConcerts(
+        searchCity: search,
+      );
     } catch (e, s) {
       return Left(UsecaseFailure(error: e, stackTrace: s));
     }
