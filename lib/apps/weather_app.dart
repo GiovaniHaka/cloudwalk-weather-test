@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 final router = AppRouter().router;
 
+/// [WeatherApp] is the main widget of the application.
 class WeatherApp extends StatelessWidget {
   const WeatherApp({super.key});
 
