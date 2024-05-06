@@ -13,11 +13,13 @@ import 'package:cloudwalk/modules/weather/domain/entities/weather_forecast_entit
 class WeatherForecastItem extends StatefulWidget {
   final DateTime date;
   final List<WeatherForecastEntity> forecasts;
+  final double? width;
 
   const WeatherForecastItem({
     Key? key,
     required this.date,
     required this.forecasts,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -66,7 +68,7 @@ class _WeatherForecastItemState extends State<WeatherForecastItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 160,
+      width: widget.width,
       decoration: BoxDecoration(
         color: AppColors.primaryRegular.withOpacity(0.1),
         borderRadius: BorderRadius.circular(

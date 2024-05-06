@@ -10,7 +10,6 @@ import 'package:cloudwalk/shared/commons/states/app_state.dart';
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
 import 'package:cloudwalk/shared/components/forms/app_text_form_field.dart';
 import 'package:cloudwalk/shared/components/forms/app_unfocuser.dart';
-import 'package:cloudwalk/shared/components/separators/vertical_separator.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
 import 'package:flutter/material.dart';
 
@@ -61,58 +60,53 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
   Widget build(BuildContext context) {
     return AppUnfocuser(
       child: Scaffold(
-        appBar: AppTopBar(),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(viewPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    Language.instance.lang.concerts,
-                    style: AppTextStyle.headlineMedium(),
-                  ),
-                  const VerticalSeparator.regular(),
-                  AppTextFormField(
-                    onChanged: onChangeSearchCityName,
-                    hintText: Language.instance.lang.hintSearchCity,
-                  ),
-                ],
+        appBar: AppTopBar(
+          title: Text(
+            Language.instance.lang.concerts,
+            style: AppTextStyle.titleMedium(),
+          ),
+        ),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(viewPadding),
+                child: AppTextFormField(
+                  onChanged: onChangeSearchCityName,
+                  hintText: Language.instance.lang.hintSearchCity,
+                ),
               ),
-            ),
-            Expanded(
-              child: RxBuilder(
-                builder: (_) {
-                  final concertsState = _concertsController.concerts;
+              Expanded(
+                child: RxBuilder(
+                  builder: (_) {
+                    final concertsState = _concertsController.concerts;
 
-                  if (concertsState is Error) {
-                    final failure = concertsState.failure;
-                    return FailureConcertsView(
-                      failure: failure,
-                      onTapTryAgain: handleTryAgain,
-                    );
-                  }
+                    if (concertsState is Error) {
+                      final failure = concertsState.failure;
+                      return FailureConcertsView(
+                        failure: failure,
+                        onTapTryAgain: handleTryAgain,
+                      );
+                    }
 
-                  if (concertsState is Empty) {
-                    return const EmptyConcertsView();
-                  }
+                    if (concertsState is Empty) {
+                      return const EmptyConcertsView();
+                    }
 
-                  if (concertsState is Loaded) {
-                    final concerts = concertsState.data;
-                    return LoadedConcertsView(
-                      concerts: concerts,
-                      onTapConcert: handleConcert,
-                      onChangeSearchCityName: onChangeSearchCityName,
-                    );
-                  }
+                    if (concertsState is Loaded) {
+                      final concerts = concertsState.data;
+                      return LoadedConcertsView(
+                        concerts: concerts,
+                        onTapConcert: handleConcert,
+                      );
+                    }
 
-                  return const LoadingConcertsView();
-                },
+                    return const LoadingConcertsView();
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
