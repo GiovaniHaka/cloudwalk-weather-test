@@ -6,13 +6,11 @@ import 'package:cloudwalk/modules/concerts/domain/entities/concert_entity.dart';
 class LoadedConcertsView extends StatelessWidget {
   final List<ConcertEntity> concerts;
   final ValueChanged<ConcertEntity> onTapConcert;
-  final ValueChanged<String> onChangeSearchCityName;
 
   const LoadedConcertsView({
     Key? key,
     required this.concerts,
     required this.onTapConcert,
-    required this.onChangeSearchCityName,
   }) : super(key: key);
 
   @override
