@@ -1,4 +1,4 @@
-import 'package:cloudwalk/core/binders/app_binder.dart';
+import 'package:cloudwalk/core/binders/binder.dart';
 import 'package:cloudwalk/modules/concerts/data/repositories/concert_repository_impl.dart';
 import 'package:cloudwalk/modules/concerts/data/sources/mock_local_source/local_concert_source.dart';
 import 'package:cloudwalk/modules/concerts/data/sources/mock_local_source/mock_local_concert_source_impl.dart';

@@ -1,4 +1,4 @@
-import 'package:cloudwalk/core/binders/app_binder.dart';
+import 'package:cloudwalk/core/binders/binder.dart';
 import 'package:cloudwalk/shared/services/env/env.dart';
 import 'package:get_it/get_it.dart';
 
