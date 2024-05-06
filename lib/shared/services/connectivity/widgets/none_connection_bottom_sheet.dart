@@ -2,6 +2,7 @@ import 'package:cloudwalk/shared/commons/constants/radius_constants.dart';
 import 'package:cloudwalk/shared/services/connectivity/widgets/none_connection_view.dart';
 import 'package:flutter/material.dart';
 
+/// [NoneConnectionBottomSheet] is a widget that will show a bottom sheet when the user has no connection.
 class NoneConnectionBottomSheet extends StatelessWidget {
   const NoneConnectionBottomSheet({super.key});
 

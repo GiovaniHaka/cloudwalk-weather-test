@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// [ResponsiveLayoutBuilder] is a widget that builds a layout based on the screen size.
 class ResponsiveLayoutBuilder extends StatelessWidget {
   final Widget? mobileChild;
   final Widget? tabletChild;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// [VerticalSeparator] is a widget that creates a vertical separator.
 class VerticalSeparator extends StatelessWidget {
   final double height;
 

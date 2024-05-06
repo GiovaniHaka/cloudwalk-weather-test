@@ -3,6 +3,7 @@ import 'package:cloudwalk/shared/commons/styles/app_colors.dart';
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 
+/// [AppSmallFilledButton] is a small button with a filled background.
 class AppSmallFilledButton extends StatelessWidget {
   final Function()? onTap;
   final Color backgroundColor;

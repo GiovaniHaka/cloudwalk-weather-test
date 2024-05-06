@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 
+/// [DateTimeExtension] is an extension that provides additional functionality to the [DateTime] class.
 extension DateTimeExtension on DateTime {
   DateTime withoutTime() {
     return DateTime(year, month, day);

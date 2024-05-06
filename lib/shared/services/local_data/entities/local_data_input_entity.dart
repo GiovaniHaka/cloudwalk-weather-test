@@ -1,3 +1,4 @@
+/// [LocalDataInputEntity] is a class that contains the table, key, and value of the local data.
 class LocalDataInputEntity {
   final String table;
   final String key;

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+/// [AppTimerCallback] is a class that will handle the timer callback.
 class AppTimerCallback {
   final Duration _duration;
 

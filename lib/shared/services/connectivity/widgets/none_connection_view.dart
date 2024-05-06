@@ -5,6 +5,7 @@ import 'package:cloudwalk/shared/components/separators/vertical_separator.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
 import 'package:flutter/widgets.dart';
 
+/// [NoneConnectionView] is a widget that will show a message when the user has no connection.
 class NoneConnectionView extends StatelessWidget {
   const NoneConnectionView({super.key});
 

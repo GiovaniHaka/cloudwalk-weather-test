@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloudwalk/shared/commons/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 
+/// [AppNetworkImage] is a network image with a placeholder and error widget that shows a loading indicator and an error icon, respectively.
+/// It uses the [CachedNetworkImage] package to cache the image.
 class AppNetworkImage extends StatelessWidget {
   final String imageUrl;
   final double height;

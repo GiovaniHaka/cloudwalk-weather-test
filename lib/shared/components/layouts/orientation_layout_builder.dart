@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// [OrientationLayoutBuilder] is a widget that builds a layout based on the orientation.
 class OrientationLayoutBuilder extends StatelessWidget {
   final Widget verticalChild;
   final Widget horizontalChild;

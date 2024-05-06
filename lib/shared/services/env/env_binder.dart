@@ -2,6 +2,7 @@ import 'package:cloudwalk/core/binders/binder.dart';
 import 'package:cloudwalk/shared/services/env/env.dart';
 import 'package:get_it/get_it.dart';
 
+/// [EnvBinder] is a class that binds all dependencies related to the environment
 class EnvBinder implements Binder {
   final GetIt _getIt;
 

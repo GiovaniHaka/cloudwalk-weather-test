@@ -1,6 +1,7 @@
 import 'package:cloudwalk/shared/commons/logs/colorful_logs.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
 
+/// [Failure] is a class that represents a failure.
 class Failure {
   late String _message;
   late Object? _error;

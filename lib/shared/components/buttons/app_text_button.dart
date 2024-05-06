@@ -4,6 +4,7 @@ import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+/// [AppTextButton] is a text button.
 class AppTextButton extends StatelessWidget {
   final Function()? onTap;
   final String text;
