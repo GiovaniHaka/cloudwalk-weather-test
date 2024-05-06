@@ -1,4 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:rx_notifier/rx_notifier.dart';
+
 import 'package:cloudwalk/modules/concerts/domain/entities/concert_entity.dart';
+import 'package:cloudwalk/modules/concerts/presentation/controllers/concerts_controller.dart';
 import 'package:cloudwalk/modules/concerts/presentation/views/empty_concerts_view.dart';
 import 'package:cloudwalk/modules/concerts/presentation/views/failure_concerts_view.dart';
 import 'package:cloudwalk/modules/concerts/presentation/views/loaded_concerts_view.dart';
@@ -11,11 +15,8 @@ import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
 import 'package:cloudwalk/shared/components/forms/app_text_form_field.dart';
 import 'package:cloudwalk/shared/components/forms/app_unfocuser.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
-import 'package:flutter/material.dart';
 
-import 'package:cloudwalk/modules/concerts/presentation/controllers/concerts_controller.dart';
-import 'package:rx_notifier/rx_notifier.dart';
-
+/// [ConcertsScreen] is a screen that shows the concerts and allows the user to search for concerts.
 class ConcertsScreen extends StatefulWidget {
   final ConcertsController concertsController;
   final CurrentWeatherController currentWeatherController;

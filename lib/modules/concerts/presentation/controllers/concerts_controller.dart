@@ -5,6 +5,7 @@ import 'package:cloudwalk/shared/commons/states/app_state.dart';
 import 'package:cloudwalk/shared/commons/timers/app_timer_callback.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
+/// [ConcertsController] is a controller that manages the state of the concerts and the search of concerts.
 class ConcertsController {
   final GetConcertUsecase _getConcertUsecase;
 
