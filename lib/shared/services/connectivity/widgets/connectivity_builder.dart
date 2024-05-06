@@ -11,11 +11,13 @@ import 'package:rx_notifier/rx_notifier.dart';
 
 /// [ConnectivityBuilder] is a widget that will show a message when the user has no connection.
 class ConnectivityBuilder extends StatelessWidget {
-  final Widget child;
+  final Widget? onlineChild;
+  final Widget? offlineChild;
 
   const ConnectivityBuilder({
     Key? key,
-    required this.child,
+    required this.onlineChild,
+    required this.offlineChild,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,7 @@ class ConnectivityBuilder extends StatelessWidget {
       final state = connecitivityService.state;
 
       if (state is NoneConnection) {
-        return Padding(
+        return offlineChild ?? Padding(
           padding: const EdgeInsets.all(viewPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -52,7 +54,7 @@ class ConnectivityBuilder extends StatelessWidget {
           ),
         );
       }
-      return child;
+      return onlineChild ?? const SizedBox.shrink();
     });
   }
 }

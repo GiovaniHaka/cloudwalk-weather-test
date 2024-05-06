@@ -29,8 +29,10 @@ abstract class Dictionary {
 
   /// [DateTimeRelated]
   String get now;
+  String get today;
 
   /// [Connectivity]
   String get noneConnection;
   String get verifyYourConnection;
+  String get lastUpdate;
 }

@@ -47,4 +47,10 @@ class BrazilianPortugueseDictionary implements Dictionary {
   @override
   String get verifyYourConnection =>
       'Parece que você não está conectado à internet. Verifique sua conexão e tente novamente.';
+
+  @override
+  String get lastUpdate => 'Última atualização';
+
+  @override
+  String get today => 'Hoje';
 }

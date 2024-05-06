@@ -14,6 +14,10 @@ class ConnectivityService {
   final _state = RxNotifier<ConnectivityState>(NoneConnection());
   ConnectivityState get state => _state.value;
 
+  bool get isOffline {
+    return state is NoneConnection;
+  }
+
   initialize() {
     final connectivity = Connectivity();
 
@@ -32,6 +36,8 @@ class ConnectivityService {
         _state.value = NoneConnection();
       },
     );
+
+    connectivity.checkConnectivity();
   }
 
   dispose() {

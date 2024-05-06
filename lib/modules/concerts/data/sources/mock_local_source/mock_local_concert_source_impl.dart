@@ -1,12 +1,13 @@
 import 'package:cloudwalk/modules/concerts/data/models/concert_model.dart';
-import 'package:cloudwalk/modules/concerts/data/sources/concert_source.dart';
-import 'package:cloudwalk/modules/concerts/data/sources/mock/mock_concert_data.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/mock_local_source/local_concert_source.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/mock_remote_source/remote_concert_source.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/mock_data/mock_concert_data.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/source_failure.dart';
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 
-/// [MockConcertSourceImpl] is a mock source that implements [ConcertSource]
-class MockConcertSourceImpl extends ConcertSource {
+/// [MockLocalConcertSourceImpl] is a mock source that implements [RemoteConcertSource]
+class MockLocalConcertSourceImpl extends LocalConcertSource {
   @override
   Future<Either<Failure, List<ConcertModel>>> getConcerts({
     String? searchCity,

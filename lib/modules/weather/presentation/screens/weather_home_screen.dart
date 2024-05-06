@@ -1,13 +1,10 @@
-import 'package:cloudwalk/core/binders/app_binder.dart';
 import 'package:cloudwalk/modules/concerts/concert_router.dart';
 import 'package:cloudwalk/modules/weather/presentation/views/empty_concert_weather_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/views/failure_current_weather_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/views/loading_current_weather_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/widgets/switch_concert_title.dart';
 import 'package:cloudwalk/shared/commons/app_bar/app_top_bar.dart';
-import 'package:cloudwalk/shared/commons/logs/colorful_logs.dart';
 import 'package:cloudwalk/shared/commons/states/app_state.dart';
-import 'package:cloudwalk/shared/services/connectivity/connectivity_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/modules/weather/presentation/controllers/current_weather_controller.dart';
@@ -35,10 +32,6 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
     _currentWeatherController = widget.currentWeatherController;
 
     _currentWeatherController.initialize();
-
-    final connect = getIt.get<ConnectivityService>().state;
-
-    logSuccess('ConnectivityService: $connect');
   }
 
   handleTryAgain() {
