@@ -5,6 +5,7 @@ import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
 import 'package:cloudwalk/shared/services/connectivity/widgets/connectivity_builder.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
 
+/// [LastWeatherUpdateDisplay] is a widget that displays the last weather update from the server.
 class LastWeatherUpdateDisplay extends StatefulWidget {
   final DateTime lastUpdate;
 

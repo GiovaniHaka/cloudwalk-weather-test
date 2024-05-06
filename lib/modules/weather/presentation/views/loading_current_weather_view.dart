@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// [LoadingCurrentWeatherView] is a view that displays a loading indicator.
 class LoadingCurrentWeatherView extends StatelessWidget {
   const LoadingCurrentWeatherView({super.key});
 

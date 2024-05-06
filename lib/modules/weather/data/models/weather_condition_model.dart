@@ -1,5 +1,6 @@
 import 'package:cloudwalk/shared/commons/failures/data_failures/model_failure.dart';
 
+/// [WeatherConditionModel] is a model that represents the weather condition.
 class WeatherConditionModel {
   final int id;
   final String main;

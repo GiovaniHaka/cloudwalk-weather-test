@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 
+/// [FailureCurrentWeatherView] is a view that shows when there is a failure to get the current weather.
 class FailureCurrentWeatherView extends StatelessWidget {
   final Failure failure;
   final VoidCallback onTapTryAgain;

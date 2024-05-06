@@ -3,6 +3,7 @@ import 'package:cloudwalk/modules/weather/domain/entities/weather_condition_enti
 import 'package:cloudwalk/shared/commons/failures/data_failures/mapper_failure.dart';
 import 'package:cloudwalk/shared/commons/mapper/mapper.dart';
 
+/// [WeatherConditionMapper] is a mapper that converts [WeatherConditionModel] to [WeatherConditionEntity].
 class WeatherConditionMapper implements Mapper<WeatherConditionModel, WeatherConditionEntity> {
   @override
   WeatherConditionEntity toEntity(WeatherConditionModel model) {

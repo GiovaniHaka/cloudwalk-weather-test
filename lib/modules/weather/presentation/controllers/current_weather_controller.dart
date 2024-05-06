@@ -7,6 +7,7 @@ import 'package:cloudwalk/shared/commons/failures/presentation_failures/controll
 import 'package:cloudwalk/shared/commons/states/app_state.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
+/// [CurrentWeatherController] is a controller that manages the current weather from a concert.
 class CurrentWeatherController {
   final GetCurrentWeatherUsecase _getCurrentWeatherUsecase;
   final GetWeatherForecastUsecase _getWeatherForecastUsecase;

@@ -12,6 +12,7 @@ import 'package:cloudwalk/modules/weather/presentation/controllers/current_weath
 import 'package:cloudwalk/modules/weather/presentation/views/loaded_current_weather_view.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
+/// [WeatherHomeScreen] is a screen that shows the current weather from a concert.
 class WeatherHomeScreen extends StatefulWidget {
   final CurrentWeatherController currentWeatherController;
 

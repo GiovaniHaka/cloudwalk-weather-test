@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/shared/commons/icons/app_icons.dart';
 
+/// [SwitchConcertTitle] is a widget that displays a concert title and a button to switch the concert.
 class SwitchConcertTitle extends StatelessWidget {
   final ConcertEntity concert;
   final VoidCallback onTap;

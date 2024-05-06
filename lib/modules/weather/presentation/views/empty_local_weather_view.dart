@@ -4,6 +4,7 @@ import 'package:cloudwalk/shared/components/separators/vertical_separator.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
 import 'package:flutter/material.dart';
 
+/// [EmptyLocalWeatherView] is a view that shows when there is no local weather data available when the user is offline.
 class EmptyLocalWeatherView extends StatelessWidget {
   const EmptyLocalWeatherView({
     Key? key,

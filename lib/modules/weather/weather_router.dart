@@ -3,6 +3,7 @@ import 'package:cloudwalk/core/routers/module_router.dart';
 import 'package:cloudwalk/modules/weather/presentation/screens/weather_home_screen.dart';
 import 'package:go_router/go_router.dart';
 
+/// [WeatherRouter] is a class that routes all the weather module screens
 class WeatherRouter implements ModuleRouter {
   static String currentWeather = '/current-weather';
 

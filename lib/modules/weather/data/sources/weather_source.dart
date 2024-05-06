@@ -3,6 +3,7 @@ import 'package:cloudwalk/modules/weather/data/models/weather_forecast_model.dar
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 
+/// [WeatherSource] is a source that retrieves weather data.
 abstract class WeatherSource {
   Future<Either<Failure, CurrentWeatherModel?>> getCurrentWeather({
     required double lat,

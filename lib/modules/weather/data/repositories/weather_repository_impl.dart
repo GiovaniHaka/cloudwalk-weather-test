@@ -12,6 +12,7 @@ import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:cloudwalk/shared/services/connectivity/connectivity_service.dart';
 import 'package:dartz/dartz.dart';
 
+/// [WeatherRepositoryImpl] is a repository that implements [WeatherRepository] and retrieves weather data from [RemoteWeatherSource] and [LocalWeatherSource].
 class WeatherRepositoryImpl implements WeatherRepository {
   final RemoteWeatherSource _remoteSource;
   final LocalWeatherSource _localSource;

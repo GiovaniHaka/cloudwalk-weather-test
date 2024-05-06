@@ -1,5 +1,6 @@
 import 'package:cloudwalk/shared/commons/failures/data_failures/model_failure.dart';
 
+/// [WeatherMainModel] is a model that represents the main weather information.
 class WeatherMainModel {
   final double temperature;
   final double maxTemperature;

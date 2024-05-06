@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/modules/weather/domain/entities/weather_forecast_entity.dart';
 
+/// [WeatherForecastItem] is a widget that displays a weather forecast item.
 class WeatherForecastItem extends StatefulWidget {
   final DateTime date;
   final List<WeatherForecastEntity> forecasts;
