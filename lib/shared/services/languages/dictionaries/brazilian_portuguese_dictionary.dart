@@ -53,4 +53,10 @@ class BrazilianPortugueseDictionary implements Dictionary {
 
   @override
   String get today => 'Hoje';
+
+  @override
+  String get noLocalWeatherData => 'Sem dados locais de clima.';
+  
+  @override
+  String get connectToInternetAndTryAgain => 'Conecte-se à internet e tente novamente.';
 }

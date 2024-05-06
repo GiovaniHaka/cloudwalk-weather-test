@@ -4,12 +4,12 @@ import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class WeatherRepository {
-  Future<Either<Failure, CurrentWeatherEntity>> getCurrentWeather({
+  Future<Either<Failure, CurrentWeatherEntity?>> getCurrentWeather({
     required double lat,
     required double lon,
   });
   
-  Future<Either<Failure, List<WeatherForecastEntity>>> getWeatherForecast({
+  Future<Either<Failure, List<WeatherForecastEntity>?>> getWeatherForecast({
     required double lat,
     required double lon,
   });

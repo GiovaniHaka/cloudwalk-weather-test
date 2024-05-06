@@ -3,7 +3,6 @@ import 'package:cloudwalk/modules/weather/data/models/weather_forecast_model.dar
 import 'package:cloudwalk/modules/weather/data/sources/local/local_weather_source.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/source_failure.dart';
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
-import 'package:cloudwalk/shared/commons/logs/colorful_logs.dart';
 import 'package:cloudwalk/shared/services/local_data/entities/local_data_input_entity.dart';
 import 'package:cloudwalk/shared/services/local_data/entities/local_data_request_entity.dart';
 import 'package:cloudwalk/shared/services/local_data/local_database_service.dart';
@@ -20,7 +19,7 @@ class LocalWeatherSourceImpl implements LocalWeatherSource {
   final weatherForecastTable = 'weather_forecast';
 
   @override
-  Future<Either<Failure, CurrentWeatherModel>> getCurrentWeather({
+  Future<Either<Failure, CurrentWeatherModel?>> getCurrentWeather({
     required double lat,
     required double lon,
   }) async {
@@ -36,7 +35,9 @@ class LocalWeatherSourceImpl implements LocalWeatherSource {
         request,
       );
 
-      logData('Local CurrentWeather: $data');
+      if (data == null) {
+        return const Right(null);
+      }
 
       final model = CurrentWeatherModel.fromLocalJson(data);
 
@@ -47,7 +48,7 @@ class LocalWeatherSourceImpl implements LocalWeatherSource {
   }
 
   @override
-  Future<Either<Failure, List<WeatherForecastModel>>> getWeatherForecast({
+  Future<Either<Failure, List<WeatherForecastModel>?>> getWeatherForecast({
     required double lat,
     required double lon,
   }) async {
@@ -63,7 +64,9 @@ class LocalWeatherSourceImpl implements LocalWeatherSource {
         request,
       );
 
-      logData('Local WeatherForecast: $data');
+      if (data == null) {
+        return const Right(null);
+      }
 
       final models = (data as List).map((e) {
         return WeatherForecastModel.fromLocalJson(e);
@@ -92,8 +95,6 @@ class LocalWeatherSourceImpl implements LocalWeatherSource {
 
       await _localDatabaseService.put(request);
 
-      logSuccess('CurrentWeather saved: ${currentWeatherModel.toLocalMap()}');
-
       return const Right(null);
     } catch (e, s) {
       return Left(SourceFailure(error: e, stackTrace: s));
@@ -116,9 +117,6 @@ class LocalWeatherSourceImpl implements LocalWeatherSource {
       );
 
       await _localDatabaseService.put(request);
-
-      logSuccess(
-          'WeatherForecast saved: ${weatherForecasts.map((e) => e.toLocalMap()).toList()}');
 
       return const Right(null);
     } catch (e, s) {

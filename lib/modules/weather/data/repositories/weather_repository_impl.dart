@@ -28,12 +28,12 @@ class WeatherRepositoryImpl implements WeatherRepository {
   bool get isOffline => _connectivityService.isOffline;
 
   @override
-  Future<Either<Failure, CurrentWeatherEntity>> getCurrentWeather({
+  Future<Either<Failure, CurrentWeatherEntity?>> getCurrentWeather({
     required double lat,
     required double lon,
   }) async {
     try {
-      Either<Failure, CurrentWeatherModel> result;
+      Either<Failure, CurrentWeatherModel?> result;
 
       if (isOffline) {
         result = await _localSource.getCurrentWeather(
@@ -52,6 +52,10 @@ class WeatherRepositoryImpl implements WeatherRepository {
           return Left(failure);
         },
         (model) async {
+          if (model == null) {
+            return const Right(null);
+          }
+
           if (!isOffline) {
             await saveCurrentWeather(lat: lat, lon: lon, model: model);
           }
@@ -67,12 +71,12 @@ class WeatherRepositoryImpl implements WeatherRepository {
   }
 
   @override
-  Future<Either<Failure, List<WeatherForecastEntity>>> getWeatherForecast({
+  Future<Either<Failure, List<WeatherForecastEntity>?>> getWeatherForecast({
     required double lat,
     required double lon,
   }) async {
     try {
-      Either<Failure, List<WeatherForecastModel>> result;
+      Either<Failure, List<WeatherForecastModel>?> result;
 
       if (isOffline) {
         result = await _localSource.getWeatherForecast(
@@ -91,6 +95,10 @@ class WeatherRepositoryImpl implements WeatherRepository {
           return Left(failure);
         },
         (models) async {
+          if (models == null) {
+            return const Right(null);
+          }
+
           if (!isOffline) {
             await saveWeatherForecast(lat: lat, lon: lon, models: models);
           }

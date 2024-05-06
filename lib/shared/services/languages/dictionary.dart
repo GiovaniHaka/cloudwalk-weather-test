@@ -12,6 +12,7 @@ abstract class Dictionary {
 
   /// [WeatherRelated]
   String get currentWeather;
+  String get noLocalWeatherData;
 
   /// [ConcertsRelated]
   String get concert;
@@ -35,4 +36,5 @@ abstract class Dictionary {
   String get noneConnection;
   String get verifyYourConnection;
   String get lastUpdate;
+  String get connectToInternetAndTryAgain;
 }
