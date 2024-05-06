@@ -1,14 +1,14 @@
-import 'package:cloudwalk/shared/commons/failures/data_failures/model_failure.dart';
+import 'package:equatable/equatable.dart';
 
 /// [WeatherConditionModel] is a model that represents the weather condition.
-class WeatherConditionModel {
+class WeatherConditionModel extends Equatable {
   final int id;
   final String main;
   final String description;
   final String icon;
   final String iconUrl;
 
-  WeatherConditionModel({
+  const WeatherConditionModel({
     required this.id,
     required this.main,
     required this.description,
@@ -20,45 +20,21 @@ class WeatherConditionModel {
     return 'https://openweathermap.org/img/wn/$icon@4x.png';
   }
 
-  static WeatherConditionModel fromRemoteJson(Map json) {
-    try {
-      final icon = json['icon'] as String;
-      final iconUrl = getIconUrl(icon);
 
-      return WeatherConditionModel(
-          id: json['id'] as int,
-          main: json['main'] as String,
-          description: json['description'] as String,
-          icon: icon,
-          iconUrl: iconUrl);
-    } catch (e, s) {
-      throw ModelFailure(error: e, stackTrace: s);
-    }
-  }
-
-  static WeatherConditionModel fromLocalJson(Map map) {
-    try {
-      final icon = map['icon'] as String;
-      final iconUrl = getIconUrl(icon);
-
-      return WeatherConditionModel(
-        id: map['id'],
-        main: map['main'],
-        description: map['description'],
-        icon: icon,
-        iconUrl: iconUrl,
-      );
-    } catch (e, s) {
-      throw ModelFailure(error: e, stackTrace: s);
-    }
-  }
-
-  toLocalMap() {
+  Map toLocalMap() {
     return {
       'id': id,
       'main': main,
       'description': description,
       'icon': icon,
     };
+  }
+
+  @override
+  List<Object?> get props => [id, main, description, icon, iconUrl];
+
+  @override
+  String toString() {
+    return 'WeatherConditionModel(id: $id, main: $main, description: $description, icon: $icon, iconUrl: $iconUrl)';
   }
 }

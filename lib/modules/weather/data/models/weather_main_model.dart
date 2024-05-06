@@ -1,46 +1,25 @@
-import 'package:cloudwalk/shared/commons/failures/data_failures/model_failure.dart';
+import 'package:equatable/equatable.dart';
 
 /// [WeatherMainModel] is a model that represents the main weather information.
-class WeatherMainModel {
+class WeatherMainModel extends Equatable {
   final double temperature;
   final double maxTemperature;
   final double minTemperature;
   final double humidity;
 
-  WeatherMainModel({
+  const WeatherMainModel({
     required this.temperature,
     required this.maxTemperature,
     required this.minTemperature,
     required this.humidity,
   });
 
-  static WeatherMainModel fromRemoteJson(Map json) {
-    try {
-      return WeatherMainModel(
-        temperature: json['temp'].toDouble(),
-        maxTemperature: json['temp_max'].toDouble(),
-        minTemperature: json['temp_min'].toDouble(),
-        humidity: json['humidity'].toDouble(),
-      );
-    } catch (e, s) {
-      throw ModelFailure(error: e, stackTrace: s);
-    }
+  @override
+  String toString() {
+    return 'WeatherMainModel(temperature: $temperature, maxTemperature: $maxTemperature, minTemperature: $minTemperature, humidity: $humidity)';
   }
 
-  static WeatherMainModel fromLocalMap(Map json) {
-    try {
-      return WeatherMainModel(
-        temperature: json['temperature'],
-        maxTemperature: json['maxTemperature'],
-        minTemperature: json['minTemperature'],
-        humidity: json['humidity'],
-      );
-    } catch (e, s) {
-      throw ModelFailure(error: e, stackTrace: s);
-    }
-  }
-
-  toLocalMap() {
+  Map toLocalMap() {
     return {
       'temperature': temperature,
       'maxTemperature': maxTemperature,
@@ -48,4 +27,12 @@ class WeatherMainModel {
       'humidity': humidity,
     };
   }
+
+  @override
+  List<Object?> get props => [
+        temperature,
+        maxTemperature,
+        minTemperature,
+        humidity,
+      ];
 }

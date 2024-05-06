@@ -24,4 +24,38 @@ class WeatherConditionMapper implements Mapper<WeatherConditionModel, WeatherCon
   WeatherConditionModel toModel(WeatherConditionEntity entity) {
     throw UnimplementedError();
   }
+
+
+   WeatherConditionModel fromRemoteJson(Map json) {
+    try {
+      final icon = json['icon'] as String;
+      final iconUrl = WeatherConditionModel.getIconUrl(icon);
+
+      return WeatherConditionModel(
+          id: json['id'] as int,
+          main: json['main'] as String,
+          description: json['description'] as String,
+          icon: icon,
+          iconUrl: iconUrl);
+    } catch (e, s) {
+      throw MapperFailure(error: e, stackTrace: s);
+    }
+  }
+
+   WeatherConditionModel fromLocalJson(Map map) {
+    try {
+      final icon = map['icon'] as String;
+      final iconUrl = WeatherConditionModel.getIconUrl(icon);
+
+      return WeatherConditionModel(
+        id: map['id'],
+        main: map['main'],
+        description: map['description'],
+        icon: icon,
+        iconUrl: iconUrl,
+      );
+    } catch (e, s) {
+      throw MapperFailure(error: e, stackTrace: s);
+    }
+  }
 }

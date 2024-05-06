@@ -1,60 +1,37 @@
+import 'package:equatable/equatable.dart';
+
 import 'package:cloudwalk/modules/weather/data/models/weather_condition_model.dart';
 import 'package:cloudwalk/modules/weather/data/models/weather_main_model.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/model_failure.dart';
 
 /// [CurrentWeatherModel] is a model that represents the current weather.
-class CurrentWeatherModel {
+class CurrentWeatherModel extends Equatable {
   final DateTime lastUpdate;
   final List<WeatherConditionModel> conditions;
   final WeatherMainModel main;
 
-  CurrentWeatherModel({
+  const CurrentWeatherModel({
     required this.lastUpdate,
     required this.conditions,
     required this.main,
   });
 
-  static CurrentWeatherModel fromRemoteJson(Map json) {
+  Map toLocalMap() {
     try {
-      final conditions = (json['weather'] as List).map((e) {
-        return WeatherConditionModel.fromRemoteJson(e);
-      }).toList();
-
-      final main = WeatherMainModel.fromRemoteJson(json['main']);
-
-      return CurrentWeatherModel(
-        lastUpdate: DateTime.now(),
-        conditions: conditions,
-        main: main,
-      );
+      return {
+        'lastUpdate': lastUpdate.toIso8601String(),
+        'conditions': conditions.map((e) => e.toLocalMap()).toList(),
+        'main': main.toLocalMap(),
+      };
     } catch (e, s) {
       throw ModelFailure(error: e, stackTrace: s);
     }
   }
 
-  static CurrentWeatherModel fromLocalJson(Map map) {
-    try {
-      final conditions = (map['conditions'] as List).map((e) {
-        return WeatherConditionModel.fromLocalJson(e);
-      }).toList();
+  @override
+  List<Object?> get props => [lastUpdate, conditions, main];
 
-      final main = WeatherMainModel.fromLocalMap(map['main']);
-
-      return CurrentWeatherModel(
-        lastUpdate: DateTime.parse(map['lastUpdate']),
-        conditions: conditions,
-        main: main,
-      );
-    } catch (e, s) {
-      throw ModelFailure(error: e, stackTrace: s);
-    }
-  }
-
-  toLocalMap() {
-    return {
-      'lastUpdate': lastUpdate.toIso8601String(),
-      'conditions': conditions.map((e) => e.toLocalMap()).toList(),
-      'main': main.toLocalMap(),
-    };
-  }
+  @override
+  String toString() =>
+      'CurrentWeatherModel(lastUpdate: $lastUpdate, conditions: $conditions, main: $main)';
 }
