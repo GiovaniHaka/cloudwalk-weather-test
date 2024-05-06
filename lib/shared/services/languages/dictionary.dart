@@ -33,8 +33,8 @@ abstract class Dictionary {
   String get today;
 
   /// [Connectivity]
+  String get connectToInternetAndTryAgain;
+  String get lastUpdate;
   String get noneConnection;
   String get verifyYourConnection;
-  String get lastUpdate;
-  String get connectToInternetAndTryAgain;
 }

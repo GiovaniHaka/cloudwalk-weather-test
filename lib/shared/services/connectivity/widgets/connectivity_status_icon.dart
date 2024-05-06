@@ -2,6 +2,7 @@ import 'package:cloudwalk/core/binders/app_binder.dart';
 import 'package:cloudwalk/shared/commons/icons/app_icons.dart';
 import 'package:cloudwalk/shared/services/connectivity/connectivity_service.dart';
 import 'package:cloudwalk/shared/services/connectivity/states/connectivity_states.dart';
+import 'package:cloudwalk/shared/services/connectivity/widgets/none_connection_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
@@ -13,13 +14,20 @@ class ConnectivityStatusIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     final connectivityService = getIt.get<ConnectivityService>();
 
+    handleShowConnectionDetails() {
+      const NoneConnectionBottomSheet().show(context);
+    }
+
     return RxBuilder(builder: (_) {
       final connectionState = connectivityService.state;
 
       if (connectionState is NoneConnection) {
-        return const Icon(
-          AppIcons.noneConnection,
-          size: 20,
+        return IconButton(
+          onPressed: handleShowConnectionDetails,
+          icon: const Icon(
+            AppIcons.noneConnection,
+            size: 20,
+          ),
         );
       }
 
