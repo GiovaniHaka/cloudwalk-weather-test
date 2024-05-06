@@ -6,6 +6,11 @@ import 'package:cloudwalk/shared/services/local_data/local_database_service.dart
 
 class HiveDatabaseServiceImpl implements LocalDatabaseService {
   @override
+  Future<void> init() async {
+    await Hive.initFlutter();
+  }
+
+  @override
   Future<dynamic> get(
     LocalDataRequestEntity request,
   ) async {
@@ -37,6 +42,16 @@ class HiveDatabaseServiceImpl implements LocalDatabaseService {
       final box = await Hive.openBox(request.table);
 
       await box.delete(request.key);
+    } catch (e, s) {
+      throw Failure(error: e, stackTrace: s);
+    }
+  }
+
+  @override
+  Future<void> clearAll() async {
+    try {
+      await Hive.deleteBoxFromDisk('current_weather');
+      await Hive.deleteBoxFromDisk('weather_forecast');
     } catch (e, s) {
       throw Failure(error: e, stackTrace: s);
     }

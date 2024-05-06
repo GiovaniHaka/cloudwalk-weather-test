@@ -5,7 +5,7 @@ import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class GetWeatherForecastUsecase {
-  Future<Either<Failure, List<WeatherForecastEntity>>> call({
+  Future<Either<Failure, List<WeatherForecastEntity>?>> call({
     required double lat,
     required double lon,
   });
@@ -19,7 +19,7 @@ class GetWeatherForecastUsecaseImpl implements GetWeatherForecastUsecase {
   }) : _repository = repository;
 
   @override
-  Future<Either<Failure, List<WeatherForecastEntity>>> call({
+  Future<Either<Failure, List<WeatherForecastEntity>?>> call({
     required double lat,
     required double lon,
   }) async {
@@ -33,6 +33,10 @@ class GetWeatherForecastUsecaseImpl implements GetWeatherForecastUsecase {
         return Left(l);
       }, (forecasts) {
         final now = DateTime.now().withoutTime();
+
+        if (forecasts == null) {
+          return const Right(null);
+        }
 
         forecasts.removeWhere((e) {
           return e.date?.withoutTime().isAtSameMomentAs(now) ?? false;

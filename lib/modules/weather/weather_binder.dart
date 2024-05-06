@@ -1,7 +1,9 @@
 import 'package:cloudwalk/core/binders/app_binder.dart';
 import 'package:cloudwalk/modules/weather/data/repositories/weather_repository_impl.dart';
+import 'package:cloudwalk/modules/weather/data/sources/local/local_weather_source.dart';
+import 'package:cloudwalk/modules/weather/data/sources/local/local_weather_source_impl.dart';
 import 'package:cloudwalk/modules/weather/data/sources/remote/remote_weather_source_impl.dart';
-import 'package:cloudwalk/modules/weather/data/sources/weather_source.dart';
+import 'package:cloudwalk/modules/weather/data/sources/remote/remote_weather_source.dart';
 import 'package:cloudwalk/modules/weather/domain/repositories/weather_repository.dart';
 import 'package:cloudwalk/modules/weather/domain/usecases/get_current_weather_usecase.dart';
 import 'package:cloudwalk/modules/weather/domain/usecases/get_weather_forecast_usecase.dart';
@@ -20,7 +22,7 @@ class WeatherBinder implements Binder {
   @override
   void bind() {
     /// [Sources]
-    _getIt.registerFactory<WeatherSource>(
+    _getIt.registerFactory<RemoteWeatherSource>(
       () => RemoteWeatherSourceImpl(
         apiClientService: _getIt.get(),
         endpoints: _getIt.get(),
@@ -28,10 +30,18 @@ class WeatherBinder implements Binder {
       ),
     );
 
+    _getIt.registerFactory<LocalWeatherSource>(
+      () => LocalWeatherSourceImpl(
+        localDatabaseService: _getIt.get(),
+      ),
+    );
+
     /// [Repositories]
     _getIt.registerFactory<WeatherRepository>(
       () => WeatherRepositoryImpl(
-        source: _getIt.get(),
+        localSource: _getIt.get(),
+        remoteSource: _getIt.get(),
+        connectivityService: _getIt.get(),
       ),
     );
 
@@ -41,7 +51,7 @@ class WeatherBinder implements Binder {
         repository: _getIt.get(),
       ),
     );
-    
+
     _getIt.registerFactory<GetWeatherForecastUsecase>(
       () => GetWeatherForecastUsecaseImpl(
         repository: _getIt.get(),

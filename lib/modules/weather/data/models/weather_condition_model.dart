@@ -15,10 +15,14 @@ class WeatherConditionModel {
     required this.iconUrl,
   });
 
-  static WeatherConditionModel fromJson(Map<String, dynamic> json) {
+  static String getIconUrl(String icon) {
+    return 'https://openweathermap.org/img/wn/$icon@4x.png';
+  }
+
+  static WeatherConditionModel fromRemoteJson(Map json) {
     try {
       final icon = json['icon'] as String;
-      final iconUrl = 'https://openweathermap.org/img/wn/$icon@4x.png';
+      final iconUrl = getIconUrl(icon);
 
       return WeatherConditionModel(
           id: json['id'] as int,
@@ -29,5 +33,31 @@ class WeatherConditionModel {
     } catch (e, s) {
       throw ModelFailure(error: e, stackTrace: s);
     }
+  }
+
+  static WeatherConditionModel fromLocalJson(Map map) {
+    try {
+      final icon = map['icon'] as String;
+      final iconUrl = getIconUrl(icon);
+
+      return WeatherConditionModel(
+        id: map['id'],
+        main: map['main'],
+        description: map['description'],
+        icon: icon,
+        iconUrl: iconUrl,
+      );
+    } catch (e, s) {
+      throw ModelFailure(error: e, stackTrace: s);
+    }
+  }
+
+  toLocalMap() {
+    return {
+      'id': id,
+      'main': main,
+      'description': description,
+      'icon': icon,
+    };
   }
 }

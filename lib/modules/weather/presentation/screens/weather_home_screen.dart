@@ -1,8 +1,10 @@
 import 'package:cloudwalk/modules/concerts/concert_router.dart';
 import 'package:cloudwalk/modules/weather/presentation/views/empty_concert_weather_view.dart';
+import 'package:cloudwalk/modules/weather/presentation/views/empty_local_weather_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/views/failure_current_weather_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/views/loading_current_weather_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/widgets/switch_concert_title.dart';
+import 'package:cloudwalk/shared/commons/app_bar/app_top_bar.dart';
 import 'package:cloudwalk/shared/commons/states/app_state.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +51,7 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
       final currentConcert = _currentWeatherController.currentConcert;
 
       return Scaffold(
-        appBar: AppBar(
+        appBar: AppTopBar(
           title: Builder(builder: (context) {
             if (currentConcert != null) {
               return SwitchConcertTitle(
@@ -67,6 +69,10 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
               return EmptyConcertWeatherView(
                 onTapChooseConcert: handleSwitchConcert,
               );
+            }
+
+            if (currentWeatherState is Empty || weatherForecastState is Empty) {
+              return const EmptyLocalWeatherView();
             }
 
             if (currentWeatherState is Error || weatherForecastState is Error) {

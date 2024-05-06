@@ -4,6 +4,7 @@ import 'package:cloudwalk/modules/concerts/presentation/views/failure_concerts_v
 import 'package:cloudwalk/modules/concerts/presentation/views/loaded_concerts_view.dart';
 import 'package:cloudwalk/modules/concerts/presentation/views/loading_concerts_view.dart';
 import 'package:cloudwalk/modules/weather/presentation/controllers/current_weather_controller.dart';
+import 'package:cloudwalk/shared/commons/app_bar/app_top_bar.dart';
 import 'package:cloudwalk/shared/commons/constants/padding_constants.dart';
 import 'package:cloudwalk/shared/commons/states/app_state.dart';
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
@@ -60,7 +61,7 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
   Widget build(BuildContext context) {
     return AppUnfocuser(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppTopBar(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

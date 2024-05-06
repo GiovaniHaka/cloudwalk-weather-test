@@ -13,7 +13,7 @@ class WeatherMainModel {
     required this.humidity,
   });
 
-  static WeatherMainModel fromJson(Map<String, dynamic> json) {
+  static WeatherMainModel fromRemoteJson(Map json) {
     try {
       return WeatherMainModel(
         temperature: json['temp'].toDouble(),
@@ -24,5 +24,27 @@ class WeatherMainModel {
     } catch (e, s) {
       throw ModelFailure(error: e, stackTrace: s);
     }
+  }
+
+  static WeatherMainModel fromLocalMap(Map json) {
+    try {
+      return WeatherMainModel(
+        temperature: json['temperature'],
+        maxTemperature: json['maxTemperature'],
+        minTemperature: json['minTemperature'],
+        humidity: json['humidity'],
+      );
+    } catch (e, s) {
+      throw ModelFailure(error: e, stackTrace: s);
+    }
+  }
+
+  toLocalMap() {
+    return {
+      'temperature': temperature,
+      'maxTemperature': maxTemperature,
+      'minTemperature': minTemperature,
+      'humidity': humidity,
+    };
   }
 }

@@ -1,7 +1,7 @@
 import 'package:cloudwalk/core/endpoints/app_endpoints.dart';
 import 'package:cloudwalk/modules/weather/data/models/current_weather_model.dart';
 import 'package:cloudwalk/modules/weather/data/models/weather_forecast_model.dart';
-import 'package:cloudwalk/modules/weather/data/sources/weather_source.dart';
+import 'package:cloudwalk/modules/weather/data/sources/remote/remote_weather_source.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/source_failure.dart';
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:cloudwalk/shared/services/api_client/api_client_service.dart';
@@ -10,7 +10,7 @@ import 'package:cloudwalk/shared/services/api_client/handlers/api_error_handler.
 import 'package:cloudwalk/shared/services/env/env.dart';
 import 'package:dartz/dartz.dart';
 
-class RemoteWeatherSourceImpl implements WeatherSource {
+class RemoteWeatherSourceImpl implements RemoteWeatherSource {
   final ApiClientService _apiClientService;
   final AppEndpoints _endpoints;
   final Env _env;
@@ -44,7 +44,7 @@ class RemoteWeatherSourceImpl implements WeatherSource {
 
       final data = response.data as Map<String, dynamic>;
 
-      final model = CurrentWeatherModel.fromJson(data);
+      final model = CurrentWeatherModel.fromRemoteJson(data);
 
       return Right(model);
     } on ApiException catch (e) {
@@ -79,7 +79,7 @@ class RemoteWeatherSourceImpl implements WeatherSource {
       final list = data['list'] as List;
 
       final models = list.map((e) {
-        return WeatherForecastModel.fromJson(e);
+        return WeatherForecastModel.fromRemoteJson(e);
       }).toList();
 
       return Right(models);

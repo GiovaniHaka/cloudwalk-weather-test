@@ -4,7 +4,7 @@ import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class GetCurrentWeatherUsecase {
-  Future<Either<Failure, CurrentWeatherEntity>> call({
+  Future<Either<Failure, CurrentWeatherEntity?>> call({
     required double lat,
     required double lon,
   });
@@ -18,7 +18,7 @@ class GetCurrentWeatherUsecaseImpl implements GetCurrentWeatherUsecase {
   }) : _repository = repository;
 
   @override
-  Future<Either<Failure, CurrentWeatherEntity>> call({
+  Future<Either<Failure, CurrentWeatherEntity?>> call({
     required double lat,
     required double lon,
   }) async {

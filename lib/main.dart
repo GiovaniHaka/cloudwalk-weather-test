@@ -1,12 +1,16 @@
 import 'package:cloudwalk/core/binders/app_binder.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
+import 'package:cloudwalk/shared/services/local_data/local_database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'apps/weather_app.dart';
 
-void main() {
+void main() async {
+  /// Initialize the binding
+  WidgetsFlutterBinding.ensureInitialized();
+
   /// Set the language, and could be changed to any language
   Language.instance.setLanguage('pt_BR');
 
@@ -16,6 +20,9 @@ void main() {
 
   /// Set all binders
   AppBinder().setBinders();
+
+  /// Initialize localdatabase
+  await getIt.get<LocalDatabaseService>().init();
 
   runApp(const WeatherApp());
 }

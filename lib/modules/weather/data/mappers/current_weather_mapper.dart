@@ -17,8 +17,7 @@ class CurrentWeatherMapper
       final main = WeatherMainMapper().toEntity(model.main);
 
       return CurrentWeatherEntity(
-        cityName: model.cityName,
-        countryCode: model.countryCode,
+        lastUpdate: model.lastUpdate,
         conditions: conditions,
         main: main,
       );

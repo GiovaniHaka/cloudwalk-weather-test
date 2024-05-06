@@ -12,4 +12,20 @@ extension DateTimeExtension on DateTime {
   String formatWeekday() {
     return DateFormat('EEE').format(this);
   }
+
+  String formatDDMMYYYYHHmm() {
+    return DateFormat('dd/MM/yyyy HH:mm').format(this);
+  }
+
+  String formatDDMMYYYY() {
+    return DateFormat('dd MMMM').format(this);
+  }
+
+  String formatHHmm() {
+    return DateFormat('HH:mm').format(this);
+  }
+
+  bool get isToday {
+    return isAtSameDateWithourTime(DateTime.now());
+  }
 }

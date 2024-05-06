@@ -17,12 +17,13 @@ class CurrentWeatherController {
   })  : _getCurrentWeatherUsecase = getCurrentWeatherUsecase,
         _getWeatherForecastUsecase = getWeatherForecastUsecase;
 
-
   final _currentConcert = RxNotifier<ConcertEntity?>(null);
   ConcertEntity? get currentConcert => _currentConcert.value;
-  
+
   AppState<CurrentWeatherEntity> get currentWeather => _currentWeather.value;
-  final _currentWeather = RxNotifier<AppState<CurrentWeatherEntity>>(Initial());
+  final _currentWeather = RxNotifier<AppState<CurrentWeatherEntity>>(
+    Initial(),
+  );
 
   AppState<List<WeatherForecastEntity>> get forecasts => _forecasts.value;
   final _forecasts = RxNotifier<AppState<List<WeatherForecastEntity>>>(
@@ -66,6 +67,11 @@ class CurrentWeatherController {
           _currentWeather.value = Error(failure);
         },
         (data) {
+          if (data == null) {
+            _currentWeather.value = Empty();
+            return;
+          }
+          
           _currentWeather.value = Loaded(data);
         },
       );
@@ -91,7 +97,7 @@ class CurrentWeatherController {
           _forecasts.value = Error(failure);
         },
         (data) {
-          if (data.isEmpty) {
+          if (data == null || data.isEmpty) {
             _forecasts.value = Empty();
             return;
           }

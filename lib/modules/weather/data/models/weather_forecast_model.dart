@@ -13,13 +13,13 @@ class WeatherForecastModel {
     required this.main,
   });
 
-  static WeatherForecastModel fromJson(Map<String, dynamic> json) {
+  static WeatherForecastModel fromRemoteJson(Map json) {
     try {
       final conditions = (json['weather'] as List).map((e) {
-        return WeatherConditionModel.fromJson(e);
+        return WeatherConditionModel.fromRemoteJson(e);
       }).toList();
 
-      final main = WeatherMainModel.fromJson(json['main']);
+      final main = WeatherMainModel.fromRemoteJson(json['main']);
 
       final date = DateTime.tryParse(json['dt_txt']);
 
@@ -31,5 +31,31 @@ class WeatherForecastModel {
     } catch (e, s) {
       throw ModelFailure(error: e, stackTrace: s);
     }
+  }
+
+  static WeatherForecastModel fromLocalJson(Map json) {
+    try {
+      final conditions = (json['conditions'] as List).map((e) {
+        return WeatherConditionModel.fromLocalJson(e);
+      }).toList();
+
+      final main = WeatherMainModel.fromLocalMap(json['main']);
+
+      return WeatherForecastModel(
+        date: DateTime.tryParse(json['date']),
+        conditions: conditions,
+        main: main,
+      );
+    } catch (e, s) {
+      throw ModelFailure(error: e, stackTrace: s);
+    }
+  }
+
+  toLocalMap() {
+    return {
+      'date': date?.toIso8601String(),
+      'conditions': conditions.map((e) => e.toLocalMap()).toList(),
+      'main': main.toLocalMap(),
+    };
   }
 }

@@ -37,7 +37,26 @@ class BrazilianPortugueseDictionary implements Dictionary {
 
   @override
   String get buttonChoose => 'Escolher';
-  
+
   @override
   String get now => 'Agora';
+
+  @override
+  String get noneConnection => 'Sem conexão';
+
+  @override
+  String get verifyYourConnection =>
+      'Parece que você não está conectado à internet. Verifique sua conexão e tente novamente.';
+
+  @override
+  String get lastUpdate => 'Última atualização';
+
+  @override
+  String get today => 'Hoje';
+
+  @override
+  String get noLocalWeatherData => 'Sem dados locais de clima.';
+  
+  @override
+  String get connectToInternetAndTryAgain => 'Conecte-se à internet e tente novamente.';
 }

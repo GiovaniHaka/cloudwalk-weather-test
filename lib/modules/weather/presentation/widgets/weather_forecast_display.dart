@@ -58,9 +58,9 @@ class _WeatherForecastDisplayState extends State<WeatherForecastDisplay> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 110,
+      height: 150,
       child: ListView.separated(
-        padding: const EdgeInsets.symmetric(horizontal: viewPadding),
+        padding: const EdgeInsets.all(viewPadding),
         scrollDirection: Axis.horizontal,
         itemCount: _groupedForecasts.length,
         itemBuilder: (context, index) {
