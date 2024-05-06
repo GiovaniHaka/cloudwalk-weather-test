@@ -1,4 +1,4 @@
-import 'package:cloudwalk/core/binders/app_binder.dart';
+import 'package:cloudwalk/core/binders/binder.dart';
 import 'package:cloudwalk/modules/weather/data/repositories/weather_repository_impl.dart';
 import 'package:cloudwalk/modules/weather/data/sources/local/local_weather_source.dart';
 import 'package:cloudwalk/modules/weather/data/sources/local/local_weather_source_impl.dart';

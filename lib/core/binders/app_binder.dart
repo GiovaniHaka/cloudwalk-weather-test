@@ -1,4 +1,5 @@
-import 'package:cloudwalk/core/endpoints/app_endpoints.dart';
+import 'package:cloudwalk/core/binders/binder.dart';
+import 'package:cloudwalk/core/endpoints/app_endpoints_binder.dart';
 import 'package:cloudwalk/modules/concerts/concert_binder.dart';
 import 'package:cloudwalk/modules/weather/weather_binder.dart';
 import 'package:cloudwalk/shared/services/api_client/api_client_binder.dart';
@@ -8,11 +9,6 @@ import 'package:cloudwalk/shared/services/local_data/local_database_binder.dart'
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
-
-/// Abstract class for binding dependencies
-abstract class Binder {
-  void bind();
-}
 
 /// Class to bind all dependencies in the app
 class AppBinder {
@@ -24,9 +20,9 @@ class AppBinder {
     AppEndpointsBinder(getIt: getIt),
 
     /// Services
-    ApiClientBinder(),
-    ConnectivityBinder(),
-    LocalDatabaseBinder(),
+    ApiClientBinder(getIt: getIt),
+    ConnectivityBinder(getIt: getIt),
+    LocalDatabaseBinder(getIt: getIt),
 
     /// Modules
     ConcertBinder(getIt: getIt),
