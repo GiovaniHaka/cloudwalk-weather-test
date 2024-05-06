@@ -17,14 +17,20 @@ class WeatherRepositoryImpl implements WeatherRepository {
   final RemoteWeatherSource _remoteSource;
   final LocalWeatherSource _localSource;
   final ConnectivityService _connectivityService;
+  final CurrentWeatherMapper _currentWeatherMapper;
+  final WeatherForecastMapper _weatherForecastMapper;
 
   WeatherRepositoryImpl({
     required RemoteWeatherSource remoteSource,
     required LocalWeatherSource localSource,
     required ConnectivityService connectivityService,
+    required CurrentWeatherMapper currentWeatherMapper,
+    required WeatherForecastMapper weatherForecastMapper,
   })  : _remoteSource = remoteSource,
         _localSource = localSource,
-        _connectivityService = connectivityService;
+        _connectivityService = connectivityService,
+        _currentWeatherMapper = currentWeatherMapper,
+        _weatherForecastMapper = weatherForecastMapper;
 
   bool get isOffline => _connectivityService.isOffline;
 
@@ -61,7 +67,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
             await saveCurrentWeather(lat: lat, lon: lon, model: model);
           }
 
-          final entity = CurrentWeatherMapper().toEntity(model);
+          final entity = _currentWeatherMapper.toEntity(model);
 
           return Right(entity);
         },
@@ -105,7 +111,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
           }
 
           final entities = models.map((model) {
-            return WeatherForecastMapper().toEntity(model);
+            return _weatherForecastMapper.toEntity(model);
           }).toList();
 
           return Right(entities);

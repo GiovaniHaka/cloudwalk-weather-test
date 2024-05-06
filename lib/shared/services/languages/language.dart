@@ -6,7 +6,10 @@ class Language {
   static late String _locale;
   late Dictionary lang;
 
-  Language._();
+  Language._() {
+    _locale = 'pt_BR';
+    lang = const BrazilianPortugueseDictionary();
+  }
 
   static final instance = Language._();
 

@@ -31,27 +31,37 @@ class CurrentWeatherController {
     Initial(),
   );
 
-  initialize() {
+  initialize() async {
     final concert = currentConcert;
 
     if (concert == null) {
       _currentWeather.value = Empty();
+      _forecasts.value = Empty();
       return;
     }
 
-    _getCurrentWeather(lat: concert.lat, lon: concert.lon);
-    _getWeatherForecast(lat: concert.lat, lon: concert.lon);
+    await Future.wait([
+      getCurrentWeather(lat: concert.lat, lon: concert.lon),
+      getWeatherForecast(lat: concert.lat, lon: concert.lon),
+    ]);
   }
 
-  onChangeConcert(ConcertEntity? concert) {
-    if (concert != null) {
+  onChangeConcert(ConcertEntity? concert) async {
+    if (concert == null) {
       _currentConcert.value = concert;
-      _getCurrentWeather(lat: concert.lat, lon: concert.lon);
-      _getWeatherForecast(lat: concert.lat, lon: concert.lon);
+      _currentWeather.value = Empty();
+      _forecasts.value = Empty();
+      return;
     }
+
+    _currentConcert.value = concert;
+    await Future.wait([
+      getCurrentWeather(lat: concert.lat, lon: concert.lon),
+      getWeatherForecast(lat: concert.lat, lon: concert.lon),
+    ]);
   }
 
-  Future<void> _getCurrentWeather({
+  Future<void> getCurrentWeather({
     required double lat,
     required double lon,
   }) async {
@@ -72,7 +82,7 @@ class CurrentWeatherController {
             _currentWeather.value = Empty();
             return;
           }
-          
+
           _currentWeather.value = Loaded(data);
         },
       );
@@ -81,7 +91,7 @@ class CurrentWeatherController {
     }
   }
 
-  Future<void> _getWeatherForecast({
+  Future<void> getWeatherForecast({
     required double lat,
     required double lon,
   }) async {

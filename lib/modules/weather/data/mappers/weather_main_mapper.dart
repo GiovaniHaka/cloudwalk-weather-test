@@ -23,4 +23,30 @@ class WeatherMainMapper implements Mapper<WeatherMainModel, WeatherMainEntity> {
   WeatherMainModel toModel(WeatherMainEntity entity) {
     throw UnimplementedError();
   }
+
+  WeatherMainModel fromRemoteJson(Map json) {
+    try {
+      return WeatherMainModel(
+        temperature: json['temp'].toDouble(),
+        maxTemperature: json['temp_max'].toDouble(),
+        minTemperature: json['temp_min'].toDouble(),
+        humidity: json['humidity'].toDouble(),
+      );
+    } catch (e, s) {
+      throw MapperFailure(error: e, stackTrace: s);
+    }
+  }
+
+  WeatherMainModel fromLocalJson(Map json) {
+    try {
+      return WeatherMainModel(
+        temperature: json['temperature'].toDouble(),
+        maxTemperature: json['maxTemperature'].toDouble(),
+        minTemperature: json['minTemperature'].toDouble(),
+        humidity: json['humidity'].toDouble(),
+      );
+    } catch (e, s) {
+      throw MapperFailure(error: e, stackTrace: s);
+    }
+  }
 }

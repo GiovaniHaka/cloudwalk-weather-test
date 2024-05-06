@@ -1,3 +1,5 @@
+import 'package:cloudwalk/modules/weather/data/mappers/current_weather_mapper.dart';
+import 'package:cloudwalk/modules/weather/data/mappers/weather_forecast_mapper.dart';
 import 'package:cloudwalk/modules/weather/data/models/current_weather_model.dart';
 import 'package:cloudwalk/modules/weather/data/models/weather_forecast_model.dart';
 import 'package:cloudwalk/modules/weather/data/sources/local/local_weather_source.dart';
@@ -11,10 +13,16 @@ import 'package:dartz/dartz.dart';
 /// [LocalWeatherSourceImpl] is a source that retrieves and saves weather data locally.
 class LocalWeatherSourceImpl implements LocalWeatherSource {
   final LocalDatabaseService _localDatabaseService;
+  final CurrentWeatherMapper _currentWeatherMapper;
+  final WeatherForecastMapper _weatherForecastMapper;
 
   LocalWeatherSourceImpl({
     required LocalDatabaseService localDatabaseService,
-  }) : _localDatabaseService = localDatabaseService;
+    required CurrentWeatherMapper currentWeatherMapper,
+    required WeatherForecastMapper weatherForecastMapper,
+  })  : _localDatabaseService = localDatabaseService,
+        _currentWeatherMapper = currentWeatherMapper,
+        _weatherForecastMapper = weatherForecastMapper;
 
   final currentWeatherTable = 'current_weather';
   final weatherForecastTable = 'weather_forecast';
@@ -40,7 +48,7 @@ class LocalWeatherSourceImpl implements LocalWeatherSource {
         return const Right(null);
       }
 
-      final model = CurrentWeatherModel.fromLocalJson(data);
+      final model = _currentWeatherMapper.fromLocalJson(data);
 
       return Right(model);
     } catch (e, s) {
@@ -70,7 +78,7 @@ class LocalWeatherSourceImpl implements LocalWeatherSource {
       }
 
       final models = (data as List).map((e) {
-        return WeatherForecastModel.fromLocalJson(e);
+        return _weatherForecastMapper.fromLocalJson(e);
       }).toList();
 
       return Right(models);

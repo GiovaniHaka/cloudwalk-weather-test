@@ -1,5 +1,6 @@
 import 'package:cloudwalk/modules/weather/domain/entities/current_weather_entity.dart';
 import 'package:cloudwalk/modules/weather/domain/repositories/weather_repository.dart';
+import 'package:cloudwalk/shared/commons/failures/domain_failures/usecase_failure.dart';
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 
@@ -30,7 +31,7 @@ class GetCurrentWeatherUsecaseImpl implements GetCurrentWeatherUsecase {
         lon: lon,
       );
     } catch (e, s) {
-      return Left(Failure(error: e, stackTrace: s));
+      return Left(UsecaseFailure(error: e, stackTrace: s));
     }
   }
 }

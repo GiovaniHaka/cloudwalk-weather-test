@@ -32,7 +32,6 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
   void initState() {
     super.initState();
     _currentWeatherController = widget.currentWeatherController;
-
     _currentWeatherController.initialize();
   }
 
@@ -53,9 +52,11 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
 
       return Scaffold(
         appBar: AppTopBar(
+          key: const Key('appTopBarKey'),
           title: Builder(builder: (context) {
             if (currentConcert != null) {
               return SwitchConcertTitle(
+                key: const Key('switchConcertTitleKey'),
                 concert: currentConcert,
                 onTap: handleSwitchConcert,
               );
@@ -68,12 +69,15 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
           child: Builder(builder: (context) {
             if (currentConcert == null) {
               return EmptyConcertWeatherView(
+                key: const Key('emptyConcertWeatherViewKey'),
                 onTapChooseConcert: handleSwitchConcert,
               );
             }
 
             if (currentWeatherState is Empty || weatherForecastState is Empty) {
-              return const EmptyLocalWeatherView();
+              return const EmptyLocalWeatherView(
+                key: Key('emptyLocalWeatherViewKey'),
+              );
             }
 
             if (currentWeatherState is Error || weatherForecastState is Error) {
@@ -82,6 +86,7 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
                   : weatherForecastState.failure;
 
               return FailureCurrentWeatherView(
+                key: const Key('failureCurrentWeatherViewKey'),
                 failure: failure,
                 onTapTryAgain: handleTryAgain,
               );
@@ -93,12 +98,15 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
               final forescast = weatherForecastState.data;
 
               return LoadedCurrentWeatherView(
+                key: const Key('loadedCurrentWeatherViewKey'),
                 currentWeather: currentWeater,
                 forecasts: forescast,
               );
             }
 
-            return const LoadingCurrentWeatherView();
+            return const LoadingCurrentWeatherView(
+              key: Key('loadingCurrentWeatherViewKey'),
+            );
           }),
         ),
       );

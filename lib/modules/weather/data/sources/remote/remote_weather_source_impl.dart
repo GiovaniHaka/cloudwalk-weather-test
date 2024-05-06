@@ -1,4 +1,6 @@
 import 'package:cloudwalk/core/endpoints/app_endpoints.dart';
+import 'package:cloudwalk/modules/weather/data/mappers/current_weather_mapper.dart';
+import 'package:cloudwalk/modules/weather/data/mappers/weather_forecast_mapper.dart';
 import 'package:cloudwalk/modules/weather/data/models/current_weather_model.dart';
 import 'package:cloudwalk/modules/weather/data/models/weather_forecast_model.dart';
 import 'package:cloudwalk/modules/weather/data/sources/remote/remote_weather_source.dart';
@@ -15,14 +17,20 @@ class RemoteWeatherSourceImpl implements RemoteWeatherSource {
   final ApiClientService _apiClientService;
   final AppEndpoints _endpoints;
   final Env _env;
+  final CurrentWeatherMapper _currentWeatherMapper;
+  final WeatherForecastMapper _weatherForecastMapper;
 
   RemoteWeatherSourceImpl({
     required ApiClientService apiClientService,
     required AppEndpoints endpoints,
     required Env env,
+    required CurrentWeatherMapper currentWeatherMapper,
+    required WeatherForecastMapper weatherForecastMapper,
   })  : _apiClientService = apiClientService,
         _endpoints = endpoints,
-        _env = env;
+        _env = env,
+        _currentWeatherMapper = currentWeatherMapper,
+        _weatherForecastMapper = weatherForecastMapper;
 
   @override
   Future<Either<Failure, CurrentWeatherModel>> getCurrentWeather({
@@ -43,9 +51,11 @@ class RemoteWeatherSourceImpl implements RemoteWeatherSource {
         queryParameters: query,
       );
 
-      final data = response.data as Map<String, dynamic>;
+      final data = response.data;
 
-      final model = CurrentWeatherModel.fromRemoteJson(data);
+      final lastUpdate = DateTime.now();
+
+      final model = _currentWeatherMapper.fromRemoteJson(data, lastUpdate);
 
       return Right(model);
     } on ApiException catch (e) {
@@ -75,12 +85,12 @@ class RemoteWeatherSourceImpl implements RemoteWeatherSource {
         queryParameters: query,
       );
 
-      final data = response.data as Map<String, dynamic>;
+      final data = response.data;
 
       final list = data['list'] as List;
 
       final models = list.map((e) {
-        return WeatherForecastModel.fromRemoteJson(e);
+        return _weatherForecastMapper.fromRemoteJson(e);
       }).toList();
 
       return Right(models);
