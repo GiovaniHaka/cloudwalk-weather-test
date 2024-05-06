@@ -2,16 +2,19 @@ import 'package:cloudwalk/modules/weather/presentation/widgets/weather_forecast_
 import 'package:cloudwalk/shared/commons/constants/padding_constants.dart';
 import 'package:cloudwalk/shared/commons/extensions/datetime_extension.dart';
 import 'package:cloudwalk/shared/components/separators/horizontal_separator.dart';
+import 'package:cloudwalk/shared/components/separators/vertical_separator.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/modules/weather/domain/entities/weather_forecast_entity.dart';
 
 class WeatherForecastDisplay extends StatefulWidget {
+  final Axis scrollDirection;
   final List<WeatherForecastEntity> forecasts;
 
   const WeatherForecastDisplay({
     Key? key,
     required this.forecasts,
+    this.scrollDirection = Axis.horizontal,
   }) : super(key: key);
 
   @override
@@ -19,6 +22,10 @@ class WeatherForecastDisplay extends StatefulWidget {
 }
 
 class _WeatherForecastDisplayState extends State<WeatherForecastDisplay> {
+  late Axis scrollDirection;
+  double? listHeight;
+  double? itemWidth;
+
   Map<DateTime, List<WeatherForecastEntity>> _groupedForecasts = {};
 
   setupGrouped() {
@@ -43,10 +50,25 @@ class _WeatherForecastDisplayState extends State<WeatherForecastDisplay> {
     _groupedForecasts.removeWhere((key, value) => key.isAtSameMomentAs(now));
   }
 
+  setupUiParams() {
+    scrollDirection = widget.scrollDirection;
+    final isVertical = scrollDirection == Axis.vertical;
+
+    if (isVertical) {
+      listHeight = null;
+      itemWidth = null;
+      return;
+    }
+
+    listHeight = 150;
+    itemWidth = 150;
+  }
+
   @override
   void initState() {
     super.initState();
     setupGrouped();
+    setupUiParams();
   }
 
   @override
@@ -57,11 +79,13 @@ class _WeatherForecastDisplayState extends State<WeatherForecastDisplay> {
 
   @override
   Widget build(BuildContext context) {
+    final isVertical = scrollDirection == Axis.vertical;
+
     return SizedBox(
-      height: 150,
+      height: listHeight,
       child: ListView.separated(
         padding: const EdgeInsets.all(viewPadding),
-        scrollDirection: Axis.horizontal,
+        scrollDirection: scrollDirection,
         itemCount: _groupedForecasts.length,
         itemBuilder: (context, index) {
           final date = _groupedForecasts.keys.elementAt(index);
@@ -70,9 +94,14 @@ class _WeatherForecastDisplayState extends State<WeatherForecastDisplay> {
           return WeatherForecastItem(
             date: date,
             forecasts: forecasts ?? [],
+            width: itemWidth,
           );
         },
         separatorBuilder: (context, index) {
+          if (isVertical) {
+            return const VerticalSeparator.small();
+          }
+
           return const HorizontalSeparator.small();
         },
       ),
