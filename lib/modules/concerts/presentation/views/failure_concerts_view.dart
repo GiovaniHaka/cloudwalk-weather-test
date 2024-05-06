@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 
+/// [FailureConcertsView] is a view that shows when there is a failure to get concerts
 class FailureConcertsView extends StatelessWidget {
   final Failure failure;
   final VoidCallback onTapTryAgain;

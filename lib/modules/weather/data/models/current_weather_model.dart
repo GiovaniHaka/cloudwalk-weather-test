@@ -2,6 +2,7 @@ import 'package:cloudwalk/modules/weather/data/models/weather_condition_model.da
 import 'package:cloudwalk/modules/weather/data/models/weather_main_model.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/model_failure.dart';
 
+/// [CurrentWeatherModel] is a model that represents the current weather.
 class CurrentWeatherModel {
   final DateTime lastUpdate;
   final List<WeatherConditionModel> conditions;

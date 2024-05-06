@@ -1,3 +1,4 @@
+/// [WeatherConditionEntity] is a class that contains the weather condition entity.
 class WeatherConditionEntity {
  final int id;
   final String main;

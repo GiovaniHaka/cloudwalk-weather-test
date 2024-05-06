@@ -9,12 +9,16 @@ abstract class AppState<T> {
   Failure get failure => throw UnimplementedError();
 }
 
+/// [Initial] is a class that implements [AppState] to represent the initial state.
 class Initial<T> extends AppState<T> {}
 
+/// [Loading] is a class that implements [AppState] to represent the loading state.
 class Loading<T> extends AppState<T> {}
 
+/// [Empty] is a class that implements [AppState] to represent the empty state.
 class Empty<T> extends AppState<T> {}
 
+/// [Error] is a class that implements [AppState] to represent the error state.
 class Error<T> extends AppState<T> {
   late Failure _failure;
 
@@ -29,6 +33,7 @@ class Error<T> extends AppState<T> {
   Error([Failure? failure]) : _failure = failure ?? Failure();
 }
 
+/// [Loaded] is a class that implements [AppState] to represent the loaded state.
 class Loaded<T> extends AppState<T> {
   late T _data;
 

@@ -5,6 +5,7 @@ import 'package:cloudwalk/modules/weather/data/mappers/weather_main_mapper.dart'
 import 'package:cloudwalk/shared/commons/failures/data_failures/mapper_failure.dart';
 import 'package:cloudwalk/shared/commons/mapper/mapper.dart';
 
+/// [CurrentWeatherMapper] is a mapper that converts [CurrentWeatherModel] to [CurrentWeatherEntity].
 class CurrentWeatherMapper
     implements Mapper<CurrentWeatherModel, CurrentWeatherEntity> {
   @override

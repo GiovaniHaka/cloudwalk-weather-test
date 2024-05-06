@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/modules/weather/domain/entities/weather_forecast_entity.dart';
 
+/// [WeatherForecastDisplay] is a widget that displays the weather forecast.
 class WeatherForecastDisplay extends StatefulWidget {
   final Axis scrollDirection;
   final List<WeatherForecastEntity> forecasts;

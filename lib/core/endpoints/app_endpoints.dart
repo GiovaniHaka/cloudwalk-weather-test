@@ -1,10 +1,12 @@
+/// [AppEndpoints] is an abstract class that contains the endpoints of the application.
 abstract class AppEndpoints {
   String get currentWeather;
   String get weatherForecast;
 }
 
-class AppEndpointsImpl implements AppEndpoints {
-  const AppEndpointsImpl();
+/// [ProductionEndpointsImpl] is a class that contains the endpoints of the application.
+class ProductionEndpointsImpl implements AppEndpoints {
+  const ProductionEndpointsImpl();
 
   final String openWeatherUrl = 'https://api.openweathermap.org/data/2.5';
 
@@ -14,4 +16,3 @@ class AppEndpointsImpl implements AppEndpoints {
   @override
   String get weatherForecast => '$openWeatherUrl/forecast';
 }
-

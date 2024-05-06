@@ -3,6 +3,7 @@ import 'package:cloudwalk/shared/commons/constants/radius_constants.dart';
 import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
 import 'package:flutter/material.dart';
 
+/// [AppTextFormField] extends [TextFormField] with the default style.
 class AppTextFormField extends TextFormField {
   AppTextFormField({
     super.key,

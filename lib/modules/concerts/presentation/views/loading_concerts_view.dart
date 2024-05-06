@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// [LoadingConcertsView] is a view that shows when the concerts are loading.
 class LoadingConcertsView extends StatelessWidget {
   const LoadingConcertsView({super.key});
 

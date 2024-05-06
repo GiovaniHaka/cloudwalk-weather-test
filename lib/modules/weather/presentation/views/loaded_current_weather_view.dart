@@ -7,6 +7,7 @@ import 'package:cloudwalk/shared/components/layouts/orientation_layout_builder.d
 import 'package:cloudwalk/shared/components/layouts/responsive_layout_builder.dart';
 import 'package:flutter/material.dart';
 
+/// [LoadedCurrentWeatherView] is a view that displays the current weather.
 class LoadedCurrentWeatherView extends StatelessWidget {
   final CurrentWeatherEntity currentWeather;
   final List<WeatherForecastEntity> forecasts;

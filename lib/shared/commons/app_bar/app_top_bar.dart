@@ -2,6 +2,7 @@ import 'package:cloudwalk/shared/commons/styles/app_colors.dart';
 import 'package:cloudwalk/shared/services/connectivity/widgets/connectivity_status_icon.dart';
 import 'package:flutter/material.dart';
 
+/// [AppTopBar] is a custom [AppBar] that implement app design system.
 class AppTopBar extends AppBar {
   AppTopBar({
     super.key,

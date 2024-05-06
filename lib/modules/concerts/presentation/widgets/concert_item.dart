@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/modules/concerts/domain/entities/concert_entity.dart';
 
+/// [ConcertItem] is a widget that shows a [ConcertEntity] item.
 class ConcertItem extends StatelessWidget {
   final ConcertEntity concert;
   final VoidCallback onTap;

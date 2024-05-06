@@ -4,6 +4,7 @@ import 'package:cloudwalk/modules/concerts/presentation/screens/concerts_screen.
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
+/// [ConcertRouter] is a class that routes all paths related to the concert module
 class ConcertRouter implements ModuleRouter {
   static String concerts = '/concerts';
 

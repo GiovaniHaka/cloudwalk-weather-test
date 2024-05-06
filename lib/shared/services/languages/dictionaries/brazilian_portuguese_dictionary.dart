@@ -1,6 +1,6 @@
 import 'package:cloudwalk/shared/services/languages/dictionary.dart';
 
-/// Brazilian Portuguese dictionary
+/// [BrazilianPortugueseDictionary] implements the [Dictionary] to provide the Brazilian Portuguese language.
 class BrazilianPortugueseDictionary implements Dictionary {
   const BrazilianPortugueseDictionary();
 

@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import 'package:cloudwalk/modules/concerts/domain/entities/concert_entity.dart';
 
+/// [LoadedConcertsView] is a view that displays a list of [ConcertEntity].
 class LoadedConcertsView extends StatelessWidget {
   final List<ConcertEntity> concerts;
   final ValueChanged<ConcertEntity> onTapConcert;

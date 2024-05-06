@@ -1,5 +1,6 @@
 import 'package:cloudwalk/shared/commons/extensions/double_extension.dart';
 
+/// [WeatherMainEntity] is an entity that represents the main weather data.
 class WeatherMainEntity {
   final double temperature;
   final double maxTemperature;

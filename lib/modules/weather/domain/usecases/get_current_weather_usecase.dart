@@ -3,6 +3,7 @@ import 'package:cloudwalk/modules/weather/domain/repositories/weather_repository
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 
+/// [GetCurrentWeatherUsecase] is a usecase that retrieves the current weather.
 abstract class GetCurrentWeatherUsecase {
   Future<Either<Failure, CurrentWeatherEntity?>> call({
     required double lat,
@@ -10,6 +11,7 @@ abstract class GetCurrentWeatherUsecase {
   });
 }
 
+/// [GetCurrentWeatherUsecaseImpl] is a usecase that retrieves the current weather.
 class GetCurrentWeatherUsecaseImpl implements GetCurrentWeatherUsecase {
   final WeatherRepository _repository;
 

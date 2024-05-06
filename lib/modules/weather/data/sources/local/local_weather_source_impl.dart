@@ -8,6 +8,7 @@ import 'package:cloudwalk/shared/services/local_data/entities/local_data_request
 import 'package:cloudwalk/shared/services/local_data/local_database_service.dart';
 import 'package:dartz/dartz.dart';
 
+/// [LocalWeatherSourceImpl] is a source that retrieves and saves weather data locally.
 class LocalWeatherSourceImpl implements LocalWeatherSource {
   final LocalDatabaseService _localDatabaseService;
 

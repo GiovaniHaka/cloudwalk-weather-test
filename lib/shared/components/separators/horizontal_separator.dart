@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// [HorizontalSeparator] is a widget that creates a horizontal separator.
 class HorizontalSeparator extends StatelessWidget {
   final double width;
 

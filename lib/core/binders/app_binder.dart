@@ -10,7 +10,7 @@ import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
 
-/// Class to bind all dependencies in the app
+/// [AppBinder] is a class that binds all dependencies related to the app.
 class AppBinder {
   List<Binder> binders = [
     /// Env

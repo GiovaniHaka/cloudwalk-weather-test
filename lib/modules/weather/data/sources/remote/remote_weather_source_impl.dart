@@ -10,6 +10,7 @@ import 'package:cloudwalk/shared/services/api_client/handlers/api_error_handler.
 import 'package:cloudwalk/shared/services/env/env.dart';
 import 'package:dartz/dartz.dart';
 
+/// [RemoteWeatherSourceImpl] is a source that retrieves weather data from a remote server.
 class RemoteWeatherSourceImpl implements RemoteWeatherSource {
   final ApiClientService _apiClientService;
   final AppEndpoints _endpoints;

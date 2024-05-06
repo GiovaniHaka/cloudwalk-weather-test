@@ -1,6 +1,7 @@
 import 'package:cloudwalk/shared/services/languages/dictionary.dart';
 import 'package:cloudwalk/shared/services/languages/dictionaries/brazilian_portuguese_dictionary.dart';
 
+/// [Language] is a class that will handle the language of the app.
 class Language {
   static late String _locale;
   late Dictionary lang;

@@ -2,6 +2,8 @@
 import 'dart:convert';
 import 'dart:developer' as developer;
 
+/// Logs with colors.
+
 // ANSI colors
 
 // Blue text

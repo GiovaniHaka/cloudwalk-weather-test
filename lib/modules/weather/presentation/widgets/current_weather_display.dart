@@ -7,6 +7,7 @@ import 'package:cloudwalk/shared/components/separators/vertical_separator.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
 import 'package:flutter/material.dart';
 
+/// [CurrentTemperatureDisplay] is a widget that displays the current weather.
 class CurrentTemperatureDisplay extends StatelessWidget {
   final CurrentWeatherEntity currentWeatherEntity;
 

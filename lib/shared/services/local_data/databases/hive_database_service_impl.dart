@@ -4,6 +4,7 @@ import 'package:cloudwalk/shared/services/local_data/entities/local_data_input_e
 import 'package:cloudwalk/shared/services/local_data/entities/local_data_request_entity.dart';
 import 'package:cloudwalk/shared/services/local_data/local_database_service.dart';
 
+/// [HiveDatabaseServiceImpl] is a service that implements [LocalDatabaseService] using Hive.
 class HiveDatabaseServiceImpl implements LocalDatabaseService {
   @override
   Future<void> init() async {

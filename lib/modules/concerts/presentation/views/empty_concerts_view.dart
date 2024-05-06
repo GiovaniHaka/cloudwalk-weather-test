@@ -3,6 +3,7 @@ import 'package:cloudwalk/shared/commons/styles/app_text_style.dart';
 import 'package:cloudwalk/shared/services/languages/language.dart';
 import 'package:flutter/material.dart';
 
+/// [EmptyConcertsView] is a view that shows when there are no current concerts found.
 class EmptyConcertsView extends StatelessWidget {
   const EmptyConcertsView({
     Key? key,

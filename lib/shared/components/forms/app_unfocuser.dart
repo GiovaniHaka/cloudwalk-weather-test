@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+/// [AppUnfocuser] is a widget that unfocuses the current focus when the user taps outside of the current focus.
 class AppUnfocuser extends StatefulWidget {
   final Widget? child;
   final double minScrollDistance;
