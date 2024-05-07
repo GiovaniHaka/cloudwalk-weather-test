@@ -1,18 +1,15 @@
-import 'package:intl/locale.dart';
+import 'dart:io';
 import 'package:cloudwalk/shared/services/locale/locale_service.dart';
-import 'package:intl/intl.dart';
 
 class DeviceLocaleServiceImpl implements LocaleService {
   @override
   String getCurrentLocale() {
-    final locale = Locale.parse(Intl.getCurrentLocale());
-    final localeLanguageCode = locale.languageCode;
+    final localeName = Platform.localeName;
 
-    switch (localeLanguageCode) {
-      case 'pt':
-        return 'pt_BR';
-      default:
-        return 'en_US';
+    if (localeName.contains('pt')) {
+      return 'pt_BR';
     }
+
+    return 'en_US';
   }
 }
