@@ -9,7 +9,8 @@ import 'package:cloudwalk/modules/weather/domain/entities/weather_forecast_entit
 import 'package:cloudwalk/modules/weather/domain/entities/weather_main_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../presentation/controllers/current_weather_controller_test.dart';
+import '../../domain/domain_mocks.dart';
+
 
 void main() {
   late WeatherForecastMapper mapper;

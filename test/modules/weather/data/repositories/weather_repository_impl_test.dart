@@ -1,37 +1,13 @@
-import 'package:cloudwalk/modules/weather/data/mappers/current_weather_mapper.dart';
-import 'package:cloudwalk/modules/weather/data/mappers/weather_forecast_mapper.dart';
-import 'package:cloudwalk/modules/weather/data/models/current_weather_model.dart';
-import 'package:cloudwalk/modules/weather/data/models/weather_forecast_model.dart';
 import 'package:cloudwalk/modules/weather/data/repositories/weather_repository_impl.dart';
-import 'package:cloudwalk/modules/weather/data/sources/local/local_weather_source.dart';
-import 'package:cloudwalk/modules/weather/data/sources/remote/remote_weather_source.dart';
-import 'package:cloudwalk/modules/weather/domain/entities/current_weather_entity.dart';
-import 'package:cloudwalk/modules/weather/domain/entities/weather_forecast_entity.dart';
 import 'package:cloudwalk/shared/commons/extensions/either_extensions.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/repository_failure.dart';
-import 'package:cloudwalk/shared/services/connectivity/connectivity_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-/// [Mocks]
-class MockRemoteWeatherSource extends Mock implements RemoteWeatherSource {}
-
-class MockLocalWeatherSource extends Mock implements LocalWeatherSource {}
-
-class MockConnectivityService extends Mock implements ConnectivityService {}
-
-class MockCurrentWeatherMapper extends Mock implements CurrentWeatherMapper {}
-
-class MockWeatherForecastMapper extends Mock implements WeatherForecastMapper {}
-
-class MockCurrentWeatherEntity extends Mock implements CurrentWeatherEntity {}
-
-class MockWeatherForecastEntity extends Mock implements WeatherForecastEntity {}
-
-class MockCurrentWeatherModel extends Mock implements CurrentWeatherModel {}
-
-class MockWeatherForecastModel extends Mock implements WeatherForecastModel {}
+import '../../../../shared/services/connectivity/connectivity_mocks.dart';
+import '../../domain/domain_mocks.dart';
+import '../data_mocks.dart';
 
 void main() {
   group('$WeatherRepositoryImpl', () {
