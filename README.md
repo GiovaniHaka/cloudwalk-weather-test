@@ -106,7 +106,9 @@ To run the application tests, within the project, simply execute the command:
 flutter test
 ```
 
-# 3. Architecture
+# 3. Development
+
+## Architecture
 
 The project was developed using the layered architecture, inspired by the Clean Architecture book by Robert Cecil Martin. This architecture allows for test-driven development, with the creation of contracts and interfaces for classes, following single responsibility principles.
 
@@ -123,6 +125,22 @@ In the presentation layers, the MVC (Model, View, and Controller) pattern was us
 Functional programming was also used, facilitating information propagation across layers, as well as error handling and display to the user.
 
 Finally, state management was developed, allowing the interface state to be changed through user interaction with the application.
+
+## Git Flow
+
+<img src="docs/images/git_flow.png" alt="image"  height="200">
+
+**Development:**
+where continuous code development occurs. It's the main branch where new features are integrated before being promoted to releases.
+
+**Feature**
+where new features are developed in isolation. Each feature or set of features is developed in a separate feature branch, allowing for parallel development and specific code review.
+
+**Release**
+is created from the "development" branch when the code is ready to be prepared for a release. In this branch, final adjustments, bug fixes, and final testing are performed before a version is released to production.
+
+**Master**
+is the main branch of the repository, where stable and production-ready versions are maintained.
 
 # 4. Packages
 
