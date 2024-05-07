@@ -16,6 +16,9 @@ class CurrentWeatherModel extends Equatable {
     required this.main,
   });
 
+  /// Converts a JSON object to a [CurrentWeatherModel].
+  /// 
+  /// Throws a [ModelFailure] if an error occurs during the conversion.
   Map toLocalMap() {
     try {
       return {

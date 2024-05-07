@@ -17,6 +17,9 @@ class CurrentWeatherMapper
   })  : _weatherConditionMapper = weatherConditionMapper,
         _weatherMainMapper = weatherMainMapper;
 
+  /// Converts a [CurrentWeatherModel] to a [CurrentWeatherEntity].
+  /// 
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
   @override
   CurrentWeatherEntity toEntity(CurrentWeatherModel model) {
     try {
@@ -36,11 +39,17 @@ class CurrentWeatherMapper
     }
   }
 
+  /// Converts a [CurrentWeatherEntity] to a [CurrentWeatherModel].
+  /// 
+  /// Throws an [UnimplementedError] as this method is not implemented.
   @override
   CurrentWeatherModel toModel(CurrentWeatherEntity entity) {
     throw UnimplementedError();
   }
 
+  /// Converts a JSON map to a [CurrentWeatherModel].
+  /// 
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
   CurrentWeatherModel fromRemoteJson(Map json, DateTime lastUpdate) {
     try {
       final conditions = (json['weather'] as List).map((e) {
@@ -59,6 +68,9 @@ class CurrentWeatherMapper
     }
   }
 
+  /// Converts a JSON map to a [CurrentWeatherModel].
+  /// 
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
   CurrentWeatherModel fromLocalJson(Map map) {
     try {
       final conditions = (map['conditions'] as List).map((e) {

@@ -17,6 +17,9 @@ class WeatherForecastMapper
   })  : _weatherConditionMapper = weatherConditionMapper,
         _weatherMainMapper = weatherMainMapper;
 
+  /// Converts a [WeatherForecastModel] to a [WeatherForecastEntity].
+  ///
+  /// Throws a [MapperFailure] if any error occurs during the mapping process.
   @override
   WeatherForecastEntity toEntity(WeatherForecastModel model) {
     try {
@@ -36,11 +39,17 @@ class WeatherForecastMapper
     }
   }
 
+  /// Not implemented. Throws an [UnimplementedError].
+  ///
+  /// It is intended to be overridden in subclasses if needed.
   @override
   WeatherForecastModel toModel(WeatherForecastEntity entity) {
     throw UnimplementedError();
   }
 
+  /// Converts a JSON object received from a remote source to a [WeatherForecastModel].
+  ///
+  /// Throws a [MapperFailure] if any error occurs during the mapping process.
   WeatherForecastModel fromRemoteJson(Map json) {
     try {
       final conditions = (json['weather'] as List).map((e) {
@@ -61,6 +70,9 @@ class WeatherForecastMapper
     }
   }
 
+  /// Converts a JSON object stored locally to a [WeatherForecastModel].
+  ///
+  /// Throws a [MapperFailure] if any error occurs during the mapping process.
   WeatherForecastModel fromLocalJson(Map json) {
     try {
       final conditions = (json['conditions'] as List).map((e) {

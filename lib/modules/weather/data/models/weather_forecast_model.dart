@@ -14,6 +14,7 @@ class WeatherForecastModel extends Equatable {
     required this.main,
   });
 
+  /// Converts a [WeatherForecastModel] to a JSON map.
   Map toLocalMap() {
     return {
       'date': date?.toIso8601String(),

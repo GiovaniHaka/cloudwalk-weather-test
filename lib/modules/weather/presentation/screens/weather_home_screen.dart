@@ -44,10 +44,12 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
     });
   }
 
+  /// Callback function to handle the "Try Again" action.
   handleTryAgain() {
     _currentWeatherController.initialize();
   }
 
+  /// Callback function to handle the switch to the concerts screen.
   handleSwitchConcert() {
     ConcertRouter.goToConcerts(context);
   }

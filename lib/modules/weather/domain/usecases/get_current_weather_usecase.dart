@@ -6,6 +6,11 @@ import 'package:dartz/dartz.dart';
 
 /// [GetCurrentWeatherUsecase] is a usecase that retrieves the current weather.
 abstract class GetCurrentWeatherUsecase {
+  /// Use case for getting the current weather based on latitude and longitude.
+  ///
+  /// Returns a [Future] that resolves to an [Either] containing a [Failure] or a [CurrentWeatherEntity].
+  /// The [Failure] represents any error that occurred during the process, while the [CurrentWeatherEntity]
+  /// represents the current weather information for the given latitude and longitude.
   Future<Either<Failure, CurrentWeatherEntity?>> call({
     required double lat,
     required double lon,

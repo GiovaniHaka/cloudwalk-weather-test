@@ -5,6 +5,9 @@ import 'package:cloudwalk/shared/commons/mapper/mapper.dart';
 
 /// [WeatherConditionMapper] is a mapper that converts [WeatherConditionModel] to [WeatherConditionEntity].
 class WeatherConditionMapper implements Mapper<WeatherConditionModel, WeatherConditionEntity> {
+  /// Converts a [WeatherConditionModel] to a [WeatherConditionEntity].
+  ///
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
   @override
   WeatherConditionEntity toEntity(WeatherConditionModel model) {
     try {
@@ -20,13 +23,18 @@ class WeatherConditionMapper implements Mapper<WeatherConditionModel, WeatherCon
     }
   }
 
+  /// Converts a [WeatherConditionEntity] to a [WeatherConditionModel].
+  ///
+  /// Throws an [UnimplementedError] as this method is not implemented.
   @override
   WeatherConditionModel toModel(WeatherConditionEntity entity) {
     throw UnimplementedError();
   }
 
-
-   WeatherConditionModel fromRemoteJson(Map json) {
+  /// Converts a JSON map to a [WeatherConditionModel].
+  ///
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
+  WeatherConditionModel fromRemoteJson(Map json) {
     try {
       final icon = json['icon'] as String;
       final iconUrl = WeatherConditionModel.getIconUrl(icon);
@@ -42,7 +50,10 @@ class WeatherConditionMapper implements Mapper<WeatherConditionModel, WeatherCon
     }
   }
 
-   WeatherConditionModel fromLocalJson(Map map) {
+  /// Converts a local JSON map to a [WeatherConditionModel].
+  ///
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
+  WeatherConditionModel fromLocalJson(Map map) {
     try {
       final icon = map['icon'] as String;
       final iconUrl = WeatherConditionModel.getIconUrl(icon);

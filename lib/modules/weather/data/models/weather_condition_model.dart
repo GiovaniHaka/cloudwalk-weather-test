@@ -16,11 +16,12 @@ class WeatherConditionModel extends Equatable {
     required this.iconUrl,
   });
 
+  /// Gets the icon URL.
   static String getIconUrl(String icon) {
     return 'https://openweathermap.org/img/wn/$icon@4x.png';
   }
 
-
+  /// Converts a [WeatherConditionModel] to a JSON map.
   Map toLocalMap() {
     return {
       'id': id,

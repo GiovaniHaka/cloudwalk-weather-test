@@ -5,6 +5,9 @@ import 'package:cloudwalk/shared/commons/mapper/mapper.dart';
 
 /// [WeatherMainMapper] is a mapper that converts [WeatherMainModel] to [WeatherMainEntity].
 class WeatherMainMapper implements Mapper<WeatherMainModel, WeatherMainEntity> {
+  /// Converts a [WeatherMainModel] to a [WeatherMainEntity].
+  ///
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
   @override
   WeatherMainEntity toEntity(WeatherMainModel model) {
     try {
@@ -19,11 +22,17 @@ class WeatherMainMapper implements Mapper<WeatherMainModel, WeatherMainEntity> {
     }
   }
 
+  /// Converts a [WeatherMainEntity] to a [WeatherMainModel].
+  ///
+  /// Throws an [UnimplementedError] as this method is not implemented.
   @override
   WeatherMainModel toModel(WeatherMainEntity entity) {
     throw UnimplementedError();
   }
 
+  /// Converts a JSON map to a [WeatherMainModel].
+  ///
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
   WeatherMainModel fromRemoteJson(Map json) {
     try {
       return WeatherMainModel(
@@ -37,6 +46,9 @@ class WeatherMainMapper implements Mapper<WeatherMainModel, WeatherMainEntity> {
     }
   }
 
+  /// Converts a JSON map to a [WeatherMainModel].
+  ///
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
   WeatherMainModel fromLocalJson(Map json) {
     try {
       return WeatherMainModel(

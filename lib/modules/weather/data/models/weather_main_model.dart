@@ -19,6 +19,7 @@ class WeatherMainModel extends Equatable {
     return 'WeatherMainModel(temperature: $temperature, maxTemperature: $maxTemperature, minTemperature: $minTemperature, humidity: $humidity)';
   }
 
+  /// Converts a [WeatherMainModel] to a JSON map.
   Map toLocalMap() {
     return {
       'temperature': temperature,

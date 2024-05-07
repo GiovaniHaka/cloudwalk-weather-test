@@ -18,19 +18,23 @@ class CurrentWeatherController {
   })  : _getCurrentWeatherUsecase = getCurrentWeatherUsecase,
         _getWeatherForecastUsecase = getWeatherForecastUsecase;
 
-  final _currentConcert = RxNotifier<ConcertEntity?>(null);
+  /// The current concert.
   ConcertEntity? get currentConcert => _currentConcert.value;
+  final _currentConcert = RxNotifier<ConcertEntity?>(null);
 
+  /// The current weather.
   AppState<CurrentWeatherEntity> get currentWeather => _currentWeather.value;
   final _currentWeather = RxNotifier<AppState<CurrentWeatherEntity>>(
     Initial(),
   );
 
+  /// The weather forecast.
   AppState<List<WeatherForecastEntity>> get forecasts => _forecasts.value;
   final _forecasts = RxNotifier<AppState<List<WeatherForecastEntity>>>(
     Initial(),
   );
 
+  /// Initializes the controller.
   initialize() async {
     final concert = currentConcert;
 
@@ -46,6 +50,7 @@ class CurrentWeatherController {
     ]);
   }
 
+  /// Changes the current concert and updates the weather information.
   onChangeConcert(ConcertEntity? concert) async {
     if (concert == null) {
       _currentConcert.value = concert;
@@ -61,6 +66,7 @@ class CurrentWeatherController {
     ]);
   }
 
+  /// Retrieves the current weather for the given latitude and longitude.
   Future<void> getCurrentWeather({
     required double lat,
     required double lon,
@@ -91,6 +97,7 @@ class CurrentWeatherController {
     }
   }
 
+  /// Retrieves the weather forecast for the given latitude and longitude.
   Future<void> getWeatherForecast({
     required double lat,
     required double lon,

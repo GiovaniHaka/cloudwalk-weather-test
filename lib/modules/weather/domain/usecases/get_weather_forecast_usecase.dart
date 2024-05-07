@@ -7,6 +7,12 @@ import 'package:dartz/dartz.dart';
 
 /// [GetWeatherForecastUsecase] is a usecase that retrieves the weather forecast.
 abstract class GetWeatherForecastUsecase {
+  /// Use case for getting the weather forecast.
+  ///
+  /// The [lat] and [lon] parameters are the latitude and longitude coordinates for the location
+  /// where the weather forecast will be retrieved.
+  /// 
+  /// Returns a [Future] that resolves to an [Either] containing a [Failure] or a list of [WeatherForecastEntity].
   Future<Either<Failure, List<WeatherForecastEntity>?>> call({
     required double lat,
     required double lon,
