@@ -4,15 +4,16 @@ import 'package:dio/dio.dart';
 
 /// [DioClientServiceImpl] is a service that implements [ApiClientService] using Dio package.
 class DioClientServiceImpl implements ApiClientService {
-  late final Dio dio;
+  final Dio _dio;
 
-  DioClientServiceImpl() {
+  DioClientServiceImpl({
+    required Dio dio,
+  }) : _dio = dio {
     initialize();
   }
 
   initialize() {
-    dio = Dio();
-    dio.interceptors.add(
+    _dio.interceptors.add(
       LogInterceptor(
         requestHeader: true,
         requestBody: true,
@@ -28,7 +29,7 @@ class DioClientServiceImpl implements ApiClientService {
     Map<String, dynamic>? data,
   }) async {
     try {
-      return await dio.get(
+      return await _dio.get(
         path,
         queryParameters: queryParameters,
         data: data,

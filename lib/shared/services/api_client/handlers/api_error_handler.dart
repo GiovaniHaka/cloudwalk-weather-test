@@ -7,6 +7,6 @@ class ApiErrorHandler {
     String? code, {
     Failure? defaultFailure,
   }) {
-    return Failure();
+    return defaultFailure ?? Failure();
   }
 }
