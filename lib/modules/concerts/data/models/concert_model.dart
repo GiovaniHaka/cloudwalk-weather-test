@@ -1,12 +1,14 @@
+import 'package:equatable/equatable.dart';
+
 /// [ConcertModel] is a model class that holds the concert data.
-class ConcertModel {
+class ConcertModel extends Equatable {
   final int id;
   final String city;
   final String countryCode;
   final double lat;
   final double lon;
 
-  ConcertModel({
+  const ConcertModel({
     required this.id,
     required this.city,
     required this.countryCode,
@@ -14,13 +16,6 @@ class ConcertModel {
     required this.lon,
   });
 
-  static ConcertModel fromJson(Map<String, dynamic> json) {
-    return ConcertModel(
-      id: json['id'],
-      city: json['city'],
-      countryCode: json['countryCode'],
-      lat: json['lat'].toDouble(),
-      lon: json['lon'].toDouble(),
-    );
-  }
+  @override
+  List<Object?> get props => [id, city, countryCode, lat, lon];
 }

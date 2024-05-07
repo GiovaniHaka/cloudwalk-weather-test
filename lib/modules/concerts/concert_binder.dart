@@ -1,9 +1,10 @@
 import 'package:cloudwalk/core/binders/binder.dart';
+import 'package:cloudwalk/modules/concerts/data/mappers/concert_mapper.dart';
 import 'package:cloudwalk/modules/concerts/data/repositories/concert_repository_impl.dart';
-import 'package:cloudwalk/modules/concerts/data/sources/mock_local_source/local_concert_source.dart';
-import 'package:cloudwalk/modules/concerts/data/sources/mock_local_source/mock_local_concert_source_impl.dart';
-import 'package:cloudwalk/modules/concerts/data/sources/mock_remote_source/remote_concert_source.dart';
-import 'package:cloudwalk/modules/concerts/data/sources/mock_remote_source/mock_remote_concert_source_impl.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/local/local_concert_source.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/local/local_concert_source_impl.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/remote/remote_concert_source.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/remote/remote_concert_source_impl.dart';
 import 'package:cloudwalk/modules/concerts/domain/repositories/concert_repository.dart';
 import 'package:cloudwalk/modules/concerts/domain/usecases/get_concert_usecase.dart';
 import 'package:cloudwalk/modules/concerts/presentation/controllers/concerts_controller.dart';
@@ -19,13 +20,22 @@ class ConcertBinder implements Binder {
 
   @override
   void bind() {
+    /// [Mappers]
+    _getIt.registerFactory<ConcertMapper>(
+      () => ConcertMapper(),
+    );
+
     /// [Sources]
     _getIt.registerFactory<RemoteConcertSource>(
-      () => MockRemoteConcertSourceImpl(),
+      () => RemoteConcertSourceImpl(
+        concertMapper: _getIt.get(),
+      ),
     );
 
     _getIt.registerFactory<LocalConcertSource>(
-      () => MockLocalConcertSourceImpl(),
+      () => LocalConcertSourceImpl(
+        concertMapper: _getIt.get(),
+      ),
     );
 
     /// [Repositories]
@@ -34,6 +44,7 @@ class ConcertBinder implements Binder {
         remoteSource: _getIt.get(),
         localSource: _getIt.get(),
         connectivityService: _getIt.get(),
+        concertMapper: _getIt.get(),
       ),
     );
 
@@ -48,6 +59,7 @@ class ConcertBinder implements Binder {
     _getIt.registerFactory<ConcertsController>(
       () => ConcertsController(
         getConcertUsecase: _getIt.get(),
+        timerCall: _getIt.get(),
       ),
     );
   }

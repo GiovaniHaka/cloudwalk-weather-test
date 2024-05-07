@@ -24,4 +24,18 @@ class ConcertMapper implements Mapper<ConcertModel, ConcertEntity> {
   ConcertModel toModel(ConcertEntity entity) {
     throw UnimplementedError();
   }
+
+  ConcertModel modelFromJson(Map<String, dynamic> json) {
+    try {
+      return ConcertModel(
+        id: json['id'],
+        city: json['city'],
+        countryCode: json['countryCode'],
+        lat: json['lat'].toDouble(),
+        lon: json['lon'].toDouble(),
+      );
+    } catch (e, s) {
+      throw MapperFailure(error: e, stackTrace: s);
+    }
+  }
 }

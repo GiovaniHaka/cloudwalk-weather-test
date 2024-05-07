@@ -1,23 +1,31 @@
+import 'package:cloudwalk/modules/concerts/data/mappers/concert_mapper.dart';
 import 'package:cloudwalk/modules/concerts/data/models/concert_model.dart';
-import 'package:cloudwalk/modules/concerts/data/sources/mock_remote_source/remote_concert_source.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/local/local_concert_source.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/remote/remote_concert_source.dart';
 import 'package:cloudwalk/modules/concerts/data/sources/mock_data/mock_concert_data.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/source_failure.dart';
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 
-/// [MockRemoteConcertSourceImpl] is a mock source that implements [RemoteConcertSource]
-class MockRemoteConcertSourceImpl extends RemoteConcertSource {
+/// [LocalConcertSourceImpl] is a mock source that implements [RemoteConcertSource]
+class LocalConcertSourceImpl extends LocalConcertSource {
+  final ConcertMapper _concertMapper;
+
+  LocalConcertSourceImpl({
+    required ConcertMapper concertMapper,
+  }) : _concertMapper = concertMapper;
+
   @override
   Future<Either<Failure, List<ConcertModel>>> getConcerts({
     String? searchCity,
   }) async {
     try {
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 200));
 
       const data = mockConcertData;
 
       List<ConcertModel> models = data.map((e) {
-        return ConcertModel.fromJson(e);
+        return _concertMapper.modelFromJson(e);
       }).toList();
 
       if (searchCity != null) {
