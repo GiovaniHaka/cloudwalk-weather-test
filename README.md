@@ -1,4 +1,4 @@
-# Mobile Engineer Test #1 - Cloudwalt Weather
+# Mobile Engineer Test #1 - Cloudwalk Weather
 
 > The only way to go fast, is to go well.<br/>
 > -- Robert C. Martin
