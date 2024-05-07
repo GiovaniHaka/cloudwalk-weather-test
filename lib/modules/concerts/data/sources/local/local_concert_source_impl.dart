@@ -1,13 +1,12 @@
 import 'package:cloudwalk/modules/concerts/data/mappers/concert_mapper.dart';
 import 'package:cloudwalk/modules/concerts/data/models/concert_model.dart';
 import 'package:cloudwalk/modules/concerts/data/sources/local/local_concert_source.dart';
-import 'package:cloudwalk/modules/concerts/data/sources/remote/remote_concert_source.dart';
 import 'package:cloudwalk/modules/concerts/data/sources/mock_data/mock_concert_data.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/source_failure.dart';
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 
-/// [LocalConcertSourceImpl] is a mock source that implements [RemoteConcertSource]
+/// [LocalConcertSourceImpl] is a local data source that implements [LocalConcertSource].
 class LocalConcertSourceImpl extends LocalConcertSource {
   final ConcertMapper _concertMapper;
 

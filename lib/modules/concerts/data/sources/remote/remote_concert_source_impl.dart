@@ -6,7 +6,7 @@ import 'package:cloudwalk/shared/commons/failures/data_failures/source_failure.d
 import 'package:cloudwalk/shared/commons/failures/failure.dart';
 import 'package:dartz/dartz.dart';
 
-/// [RemoteConcertSourceImpl] is a mock source that implements [RemoteConcertSource]
+/// [RemoteConcertSourceImpl] is an mplementation of the [RemoteConcertSource] interface that retrieves concert data from a remote source.
 class RemoteConcertSourceImpl extends RemoteConcertSource {
   final ConcertMapper _concertMapper;
 

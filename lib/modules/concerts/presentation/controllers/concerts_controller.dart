@@ -5,7 +5,7 @@ import 'package:cloudwalk/shared/commons/states/app_state.dart';
 import 'package:cloudwalk/shared/commons/timers/app_timer_callback.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
-/// [ConcertsController] is a controller that manages the state of the concerts and the search of concerts.
+/// [ConcertsController] is a controller that manages the state of the concerts screen.
 class ConcertsController {
   final GetConcertUsecase _getConcertUsecase;
   final AppTimerCallback _timeCall;
@@ -19,12 +19,16 @@ class ConcertsController {
         );
 
   final _concerts = RxNotifier<AppState<List<ConcertEntity>>>(Initial());
+
+  /// The current state of the concerts.
   AppState<List<ConcertEntity>> get concerts => _concerts.value;
 
-  initialize() {
+  /// Initializes the controller by fetching the concerts.
+  void initialize() {
     getConcerts();
   }
 
+  /// Handles the change in the search city name and triggers the concert search.
   Future<void> onChangeSearchCityName(String? name) async {
     final isEmpty = name?.isEmpty ?? true;
 
@@ -38,6 +42,7 @@ class ConcertsController {
     }
   }
 
+  /// Fetches the concerts based on the provided search city.
   Future<void> getConcerts({
     String? searchCity,
   }) async {

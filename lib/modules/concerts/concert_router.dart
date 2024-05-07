@@ -24,6 +24,7 @@ class ConcertRouter implements ModuleRouter {
     ];
   }
 
+  /// Navigates to the concerts screen.
   static goToConcerts(BuildContext context) {
     context.push(concerts);
   }

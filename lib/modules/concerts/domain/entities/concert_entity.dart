@@ -8,6 +8,9 @@ class ConcertEntity extends Equatable {
   final double lat;
   final double lon;
 
+  /// Constructs a new [ConcertEntity] instance.
+  ///
+  /// The [id], [city], [countryCode], [lat], and [lon] parameters are required.
   const ConcertEntity({
     required this.id,
     required this.city,

@@ -5,6 +5,9 @@ import 'package:cloudwalk/shared/commons/mapper/mapper.dart';
 
 /// [ConcertMapper] is a mapper that converts [ConcertModel] to [ConcertEntity].
 class ConcertMapper implements Mapper<ConcertModel, ConcertEntity> {
+  /// Converts a [ConcertModel] to a [ConcertEntity].
+  ///
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
   @override
   ConcertEntity toEntity(ConcertModel model) {
     try {
@@ -20,11 +23,17 @@ class ConcertMapper implements Mapper<ConcertModel, ConcertEntity> {
     }
   }
 
+  /// Converts a [ConcertEntity] to a [ConcertModel].
+  ///
+  /// Throws an [UnimplementedError] as this method is not implemented.
   @override
   ConcertModel toModel(ConcertEntity entity) {
     throw UnimplementedError();
   }
 
+  /// Converts a JSON map to a [ConcertModel].
+  ///
+  /// Throws a [MapperFailure] if an error occurs during the conversion.
   ConcertModel modelFromJson(Map<String, dynamic> json) {
     try {
       return ConcertModel(

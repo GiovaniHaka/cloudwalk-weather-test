@@ -6,12 +6,17 @@ import 'package:dartz/dartz.dart';
 
 /// [GetConcertUsecase] is a usecase that retrieves a list of [ConcertEntity].
 abstract class GetConcertUsecase {
+  /// Retrieves a list of [ConcertEntity] based on the provided search city.
+  ///
+  /// Returns a [Future] that resolves to an [Either] containing a [Failure] or a list of [ConcertEntity].
+  ///
+  /// The [searchCity] parameter is an optional [String] used to filter the concerts by city.
   Future<Either<Failure, List<ConcertEntity>>> call({
     String? searchCity,
   });
 }
 
-/// [GetConcertUsecaseImpl] is a usecase that retrieves a list of [ConcertEntity].
+/// [GetConcertUsecaseImpl] is an implementation of the [GetConcertUsecase] usecase.
 class GetConcertUsecaseImpl implements GetConcertUsecase {
   final ConcertRepository _repository;
 

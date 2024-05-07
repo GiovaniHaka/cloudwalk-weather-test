@@ -44,15 +44,18 @@ class _ConcertsScreenState extends State<ConcertsScreen> {
     _concertsController.initialize();
   }
 
+  /// Callback function to handle the change in the search city name.
   onChangeSearchCityName(String? name) {
     _concertsController.onChangeSearchCityName(name);
   }
 
+  /// Callback function to handle the selection of a concert.
   handleConcert(ConcertEntity value) {
     _currentWeatherController.onChangeConcert(value);
     Navigator.pop(context);
   }
 
+  /// Callback function to handle the "Try Again" action.
   handleTryAgain() {
     _concertsController.initialize();
   }

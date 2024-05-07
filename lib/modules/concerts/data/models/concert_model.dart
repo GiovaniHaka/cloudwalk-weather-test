@@ -8,6 +8,9 @@ class ConcertModel extends Equatable {
   final double lat;
   final double lon;
 
+  /// Constructs a new [ConcertModel] instance.
+  ///
+  /// The [id], [city], [countryCode], [lat], and [lon] parameters are required.
   const ConcertModel({
     required this.id,
     required this.city,
