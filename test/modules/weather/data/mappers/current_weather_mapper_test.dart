@@ -9,11 +9,9 @@ import 'package:cloudwalk/modules/weather/domain/entities/weather_condition_enti
 import 'package:cloudwalk/modules/weather/domain/entities/weather_main_entity.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/mapper_failure.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 
-class MockCurrentWeatherEntity extends Mock implements CurrentWeatherEntity {}
-
-class MockCurrentWeatherModel extends Mock implements CurrentWeatherModel {}
+import '../../domain/domain_mocks.dart';
+import '../data_mocks.dart';
 
 void main() {
   late CurrentWeatherMapper mapper;

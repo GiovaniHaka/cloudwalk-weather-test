@@ -8,7 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../weather/data/repositories/weather_repository_impl_test.dart';
+import '../../../../shared/services/connectivity/connectivity_mocks.dart';
 import '../concert_data_mocks.dart';
 
 void main() {

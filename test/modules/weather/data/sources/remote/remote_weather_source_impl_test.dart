@@ -1,6 +1,4 @@
 import 'package:cloudwalk/core/endpoints/app_endpoints.dart';
-import 'package:cloudwalk/modules/weather/data/mappers/current_weather_mapper.dart';
-import 'package:cloudwalk/modules/weather/data/mappers/weather_forecast_mapper.dart';
 import 'package:cloudwalk/modules/weather/data/models/current_weather_model.dart';
 import 'package:cloudwalk/modules/weather/data/models/weather_forecast_model.dart';
 import 'package:cloudwalk/modules/weather/data/sources/remote/remote_weather_source_impl.dart';
@@ -12,21 +10,15 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../data_mocks.dart';
+
 class MockApiClientService extends Mock implements ApiClientService {}
 
 class MockAppEndpoints extends Mock implements AppEndpoints {}
 
 class MockEnv extends Mock implements Env {}
 
-class MockCurrentWeatherMapper extends Mock implements CurrentWeatherMapper {}
-
-class MockWeatherForecastMapper extends Mock implements WeatherForecastMapper {}
-
 class MockResponse extends Mock implements Response {}
-
-class MockCurrentWeatherModel extends Mock implements CurrentWeatherModel {}
-
-class MockWeatherForecastModel extends Mock implements WeatherForecastModel {}
 
 void main() {
   late RemoteWeatherSourceImpl remoteWeatherSource;

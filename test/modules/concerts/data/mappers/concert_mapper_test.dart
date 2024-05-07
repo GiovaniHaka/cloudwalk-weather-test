@@ -4,7 +4,7 @@ import 'package:cloudwalk/modules/concerts/domain/entities/concert_entity.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/mapper_failure.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../weather/presentation/controllers/current_weather_controller_test.dart';
+import '../../domain/concert_domain_mocks.dart';
 import '../concert_data_mocks.dart';
 
 void main() {

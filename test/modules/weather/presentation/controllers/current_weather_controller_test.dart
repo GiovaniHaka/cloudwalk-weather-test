@@ -1,8 +1,6 @@
 import 'package:cloudwalk/modules/concerts/domain/entities/concert_entity.dart';
 import 'package:cloudwalk/modules/weather/domain/entities/current_weather_entity.dart';
 import 'package:cloudwalk/modules/weather/domain/entities/weather_forecast_entity.dart';
-import 'package:cloudwalk/modules/weather/domain/usecases/get_current_weather_usecase.dart';
-import 'package:cloudwalk/modules/weather/domain/usecases/get_weather_forecast_usecase.dart';
 import 'package:cloudwalk/modules/weather/presentation/controllers/current_weather_controller.dart';
 import 'package:cloudwalk/shared/commons/failures/presentation_failures/controller_failure.dart';
 import 'package:cloudwalk/shared/commons/states/app_state.dart';
@@ -10,17 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockGetCurrentWeatherUsecase extends Mock
-    implements GetCurrentWeatherUsecase {}
-
-class MockGetWeatherForecastUsecase extends Mock
-    implements GetWeatherForecastUsecase {}
-
-class MockCurrentWeatherEntity extends Mock implements CurrentWeatherEntity {}
-
-class MockWeatherForecastEntity extends Mock implements WeatherForecastEntity {}
-
-class MockConcertEntity extends Mock implements ConcertEntity {}
+import '../../domain/domain_mocks.dart';
 
 void main() {
   late CurrentWeatherController controller;

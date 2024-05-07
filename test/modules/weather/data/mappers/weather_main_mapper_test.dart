@@ -3,11 +3,10 @@ import 'package:cloudwalk/modules/weather/data/models/weather_main_model.dart';
 import 'package:cloudwalk/modules/weather/domain/entities/weather_main_entity.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/mapper_failure.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
 
-class MockWeatherMainEntity extends Mock implements WeatherMainEntity {}
+import '../../domain/domain_mocks.dart';
+import '../data_mocks.dart';
 
-class MockWeatherMainModel extends Mock implements WeatherMainModel {}
 
 void main() {
   group('$WeatherMainMapper', () {

@@ -1,5 +1,3 @@
-import 'package:cloudwalk/modules/weather/domain/entities/current_weather_entity.dart';
-import 'package:cloudwalk/modules/weather/domain/repositories/weather_repository.dart';
 import 'package:cloudwalk/modules/weather/domain/usecases/get_current_weather_usecase.dart';
 import 'package:cloudwalk/shared/commons/extensions/either_extensions.dart';
 import 'package:cloudwalk/shared/commons/failures/domain_failures/usecase_failure.dart';
@@ -8,9 +6,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockWeatherRepository extends Mock implements WeatherRepository {}
-
-class MockCurrentWeatherEntity extends Mock implements CurrentWeatherEntity {}
+import '../domain_mocks.dart';
 
 void main() {
   late GetCurrentWeatherUsecase usecase;
