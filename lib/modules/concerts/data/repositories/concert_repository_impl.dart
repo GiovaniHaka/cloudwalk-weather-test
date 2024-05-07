@@ -1,7 +1,7 @@
 import 'package:cloudwalk/modules/concerts/data/mappers/concert_mapper.dart';
 import 'package:cloudwalk/modules/concerts/data/models/concert_model.dart';
-import 'package:cloudwalk/modules/concerts/data/sources/mock_local_source/local_concert_source.dart';
-import 'package:cloudwalk/modules/concerts/data/sources/mock_remote_source/remote_concert_source.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/local/local_concert_source.dart';
+import 'package:cloudwalk/modules/concerts/data/sources/remote/remote_concert_source.dart';
 import 'package:cloudwalk/modules/concerts/domain/entities/concert_entity.dart';
 import 'package:cloudwalk/modules/concerts/domain/repositories/concert_repository.dart';
 import 'package:cloudwalk/shared/commons/failures/data_failures/repository_failure.dart';
@@ -14,14 +14,17 @@ class ConcertRepositoryImpl implements ConcertRepository {
   final RemoteConcertSource _remoteSource;
   final LocalConcertSource _localSource;
   final ConnectivityService _connectivityService;
+  final ConcertMapper _concertMapper;
 
   ConcertRepositoryImpl({
     required RemoteConcertSource remoteSource,
     required LocalConcertSource localSource,
     required ConnectivityService connectivityService,
+    required ConcertMapper concertMapper,
   })  : _remoteSource = remoteSource,
         _localSource = localSource,
-        _connectivityService = connectivityService;
+        _connectivityService = connectivityService,
+        _concertMapper = concertMapper;
 
   bool get isOffline => _connectivityService.isOffline;
 
@@ -44,7 +47,7 @@ class ConcertRepositoryImpl implements ConcertRepository {
         },
         (concerts) {
           final entities = concerts.map((e) {
-            return ConcertMapper().toEntity(e);
+            return _concertMapper.toEntity(e);
           }).toList();
 
           return Right(entities);
