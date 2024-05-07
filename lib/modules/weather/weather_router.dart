@@ -16,6 +16,7 @@ class WeatherRouter implements ModuleRouter {
         builder: (context, state) {
           return WeatherHomeScreen(
             currentWeatherController: getIt.get(),
+            connectivityService: getIt.get(),
           );
         },
       ),

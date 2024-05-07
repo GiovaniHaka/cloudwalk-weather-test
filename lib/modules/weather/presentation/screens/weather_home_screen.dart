@@ -6,6 +6,7 @@ import 'package:cloudwalk/modules/weather/presentation/views/loading_current_wea
 import 'package:cloudwalk/modules/weather/presentation/widgets/switch_concert_title.dart';
 import 'package:cloudwalk/shared/commons/app_bar/app_top_bar.dart';
 import 'package:cloudwalk/shared/commons/states/app_state.dart';
+import 'package:cloudwalk/shared/services/connectivity/connectivity_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cloudwalk/modules/weather/presentation/controllers/current_weather_controller.dart';
@@ -15,10 +16,12 @@ import 'package:rx_notifier/rx_notifier.dart';
 /// [WeatherHomeScreen] is a screen that shows the current weather from a concert.
 class WeatherHomeScreen extends StatefulWidget {
   final CurrentWeatherController currentWeatherController;
+  final ConnectivityService connectivityService;
 
   const WeatherHomeScreen({
     Key? key,
     required this.currentWeatherController,
+    required this.connectivityService,
   }) : super(key: key);
 
   @override
@@ -33,6 +36,12 @@ class _WeatherHomeScreenState extends State<WeatherHomeScreen> {
     super.initState();
     _currentWeatherController = widget.currentWeatherController;
     _currentWeatherController.initialize();
+
+    rxObserver(() {
+      if (!widget.connectivityService.isOffline) {
+        _currentWeatherController.initialize();
+      }
+    });
   }
 
   handleTryAgain() {
