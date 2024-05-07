@@ -1,0 +1,4 @@
+flutter_icons:
+  image_path: "assets/launcher_icons/cloudwalk_launcher_icon.png"
+  ios: true
+  remove_alpha_ios: true
