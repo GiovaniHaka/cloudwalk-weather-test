@@ -11,19 +11,16 @@ class EmptyConcertsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(viewPadding),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              Language.instance.lang.emptyConcerts,
-              style: AppTextStyle.bodyLarge(),
-            ),
-          ],
-        ),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(viewPadding),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            Language.instance.lang.emptyConcerts,
+            style: AppTextStyle.bodyLarge(),
+          ),
+        ],
       ),
     );
   }
