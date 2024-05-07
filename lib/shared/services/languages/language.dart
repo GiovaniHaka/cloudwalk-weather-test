@@ -1,3 +1,4 @@
+import 'package:cloudwalk/shared/services/languages/dictionaries/english_dictionary.dart';
 import 'package:cloudwalk/shared/services/languages/dictionary.dart';
 import 'package:cloudwalk/shared/services/languages/dictionaries/brazilian_portuguese_dictionary.dart';
 
@@ -20,7 +21,7 @@ class Language {
         lang = const BrazilianPortugueseDictionary();
         break;
       default:
-        lang = const BrazilianPortugueseDictionary();
+        lang = const EnglishDictionary();
         break;
     }
   }

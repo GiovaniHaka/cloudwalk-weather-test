@@ -56,6 +56,7 @@ class WeatherBinder implements Binder {
         env: Env(),
         currentWeatherMapper: _getIt.get(),
         weatherForecastMapper: _getIt.get(),
+        localeService: _getIt.get(),
       ),
     );
 
