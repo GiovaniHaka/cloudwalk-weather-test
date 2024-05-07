@@ -6,6 +6,7 @@ import 'package:cloudwalk/shared/services/api_client/api_client_binder.dart';
 import 'package:cloudwalk/shared/services/connectivity/connectivity_binder.dart';
 import 'package:cloudwalk/shared/services/env/env_binder.dart';
 import 'package:cloudwalk/shared/services/local_data/local_database_binder.dart';
+import 'package:cloudwalk/shared/services/locale/locale_binder.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -23,6 +24,7 @@ class AppBinder {
     ApiClientBinder(getIt: getIt),
     ConnectivityBinder(getIt: getIt),
     LocalDatabaseBinder(getIt: getIt),
+    LocaleBinder(getIt: getIt),
 
     /// Modules
     ConcertBinder(getIt: getIt),

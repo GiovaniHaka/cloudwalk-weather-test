@@ -8,6 +8,7 @@ import 'package:cloudwalk/modules/concerts/data/sources/remote/remote_concert_so
 import 'package:cloudwalk/modules/concerts/domain/repositories/concert_repository.dart';
 import 'package:cloudwalk/modules/concerts/domain/usecases/get_concert_usecase.dart';
 import 'package:cloudwalk/modules/concerts/presentation/controllers/concerts_controller.dart';
+import 'package:cloudwalk/shared/commons/timers/app_timer_callback.dart';
 import 'package:get_it/get_it.dart';
 
 /// [ConcertBinder] is a class that binds all dependencies related to the weather module
@@ -59,7 +60,7 @@ class ConcertBinder implements Binder {
     _getIt.registerFactory<ConcertsController>(
       () => ConcertsController(
         getConcertUsecase: _getIt.get(),
-        timerCall: _getIt.get(),
+        timerCall: AppTimerCallback(),
       ),
     );
   }

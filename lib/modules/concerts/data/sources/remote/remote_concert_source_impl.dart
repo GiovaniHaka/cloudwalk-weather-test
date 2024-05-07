@@ -36,7 +36,6 @@ class RemoteConcertSourceImpl extends RemoteConcertSource {
 
       return Right(models);
     } catch (e, s) {
-      print('error: $e, stackTrace: $s');
       return Left(SourceFailure(error: e, stackTrace: s));
     }
   }

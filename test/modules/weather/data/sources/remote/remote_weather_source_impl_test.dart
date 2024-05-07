@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
+import '../../../../../shared/services/locale/locace_mocks.dart';
 import '../../data_mocks.dart';
 
 class MockApiClientService extends Mock implements ApiClientService {}
@@ -29,6 +30,7 @@ void main() {
   late MockWeatherForecastMapper mockWeatherForecastMapper;
   late MockCurrentWeatherModel mockCurrerntWeatherModel;
   late MockResponse mockResponse;
+  late MockLocaleService mockLocaleService;
 
   setUp(() {
     mockApiClientService = MockApiClientService();
@@ -38,6 +40,7 @@ void main() {
     mockWeatherForecastMapper = MockWeatherForecastMapper();
     mockCurrerntWeatherModel = MockCurrentWeatherModel();
     mockResponse = MockResponse();
+    mockLocaleService = MockLocaleService();
 
     remoteWeatherSource = RemoteWeatherSourceImpl(
       apiClientService: mockApiClientService,
@@ -45,6 +48,7 @@ void main() {
       env: mockEnv,
       currentWeatherMapper: mockCurrentWeatherMapper,
       weatherForecastMapper: mockWeatherForecastMapper,
+      localeService: mockLocaleService,
     );
   });
 
@@ -53,6 +57,10 @@ void main() {
       // Arrange
       const double lat = 1;
       const double lon = 1;
+
+      when(
+        () => mockLocaleService.getCurrentLocale(),
+      ).thenReturn('pt_BR');
 
       when(
         () => mockEnv.openWeatherApiKey,
@@ -101,6 +109,10 @@ void main() {
       const double lon = 1;
 
       when(
+        () => mockLocaleService.getCurrentLocale(),
+      ).thenReturn('pt_BR');
+
+      when(
         () => mockEnv.openWeatherApiKey,
       ).thenReturn('YOUR_API_KEY');
 
@@ -147,6 +159,10 @@ void main() {
       // Arrange
       const double lat = 1;
       const double lon = 1;
+
+      when(
+        () => mockLocaleService.getCurrentLocale(),
+      ).thenReturn('pt_BR');
 
       when(
         () => mockEnv.openWeatherApiKey,
@@ -198,6 +214,10 @@ void main() {
       // Arrange
       const double lat = 1;
       const double lon = 1;
+
+      when(
+        () => mockLocaleService.getCurrentLocale(),
+      ).thenReturn('pt_BR');
 
       when(
         () => mockEnv.openWeatherApiKey,

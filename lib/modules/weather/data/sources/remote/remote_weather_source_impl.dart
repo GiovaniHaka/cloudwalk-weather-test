@@ -10,6 +10,7 @@ import 'package:cloudwalk/shared/services/api_client/api_client_service.dart';
 import 'package:cloudwalk/shared/services/api_client/exceptions/api_exception.dart';
 import 'package:cloudwalk/shared/services/api_client/handlers/api_error_handler.dart';
 import 'package:cloudwalk/shared/services/env/env.dart';
+import 'package:cloudwalk/shared/services/locale/locale_service.dart';
 import 'package:dartz/dartz.dart';
 
 /// [RemoteWeatherSourceImpl] is a source that retrieves weather data from a remote server.
@@ -19,6 +20,7 @@ class RemoteWeatherSourceImpl implements RemoteWeatherSource {
   final Env _env;
   final CurrentWeatherMapper _currentWeatherMapper;
   final WeatherForecastMapper _weatherForecastMapper;
+  final LocaleService _localeService;
 
   RemoteWeatherSourceImpl({
     required ApiClientService apiClientService,
@@ -26,11 +28,15 @@ class RemoteWeatherSourceImpl implements RemoteWeatherSource {
     required Env env,
     required CurrentWeatherMapper currentWeatherMapper,
     required WeatherForecastMapper weatherForecastMapper,
+    required LocaleService localeService,
   })  : _apiClientService = apiClientService,
         _endpoints = endpoints,
         _env = env,
         _currentWeatherMapper = currentWeatherMapper,
-        _weatherForecastMapper = weatherForecastMapper;
+        _weatherForecastMapper = weatherForecastMapper,
+        _localeService = localeService;
+
+  String get lang => _localeService.getCurrentLocale();
 
   @override
   Future<Either<Failure, CurrentWeatherModel>> getCurrentWeather({
@@ -43,7 +49,7 @@ class RemoteWeatherSourceImpl implements RemoteWeatherSource {
         'lon': lon,
         'appid': _env.openWeatherApiKey,
         'units': 'metric',
-        'lang': 'pt_br',
+        'lang': lang,
       };
 
       final response = await _apiClientService.get(
@@ -77,7 +83,7 @@ class RemoteWeatherSourceImpl implements RemoteWeatherSource {
         'lon': lon,
         'appid': _env.openWeatherApiKey,
         'units': 'metric',
-        'lang': 'pt_br',
+        'lang': lang,
       };
 
       final response = await _apiClientService.get(
